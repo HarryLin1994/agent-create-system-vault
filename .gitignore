@@ -12,3 +12,7 @@ env/
 00_Inbox/Raw Sources/*
 !00_Inbox/Raw Sources/README.md
 !00_Inbox/Raw Sources/.gitkeep
+!00_Inbox/Raw Sources/evidence-based-startup-methodology/
+00_Inbox/Raw Sources/evidence-based-startup-methodology/*
+!00_Inbox/Raw Sources/evidence-based-startup-methodology/README.md
+!00_Inbox/Raw Sources/evidence-based-startup-methodology/.gitkeep

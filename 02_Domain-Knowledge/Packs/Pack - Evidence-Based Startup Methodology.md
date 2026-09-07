@@ -40,6 +40,8 @@ Book content rule: do not search for, queue, download, or ingest pirated PDFs, u
 - Preferred note types: knowledge-source, concept, case, checklist, eval, source-manifest, tool-spec
 - Required tags: startup, customer-discovery, mvp, pmf, go-to-market, pivot
 - Excluded tags: confidential unless the user has permission and a need to know
+- Current source mode: user-provided local files only.
+- Public source search: paused to avoid false-positive source judgments.
 - Permission rule: public methodology can be used directly; founder notes, customer interviews, pitch decks, financial models, investor feedback, and customer lists need review before retrieval or citation.
 - Sensitivity rule: avoid exposing customer names, internal metrics, fundraising terms, private strategy, or personally identifiable details.
 - Reliability floor: medium
@@ -85,14 +87,17 @@ Book content rule: do not search for, queue, download, or ingest pirated PDFs, u
 ## Included Tools
 
 - [[../../04_Tool-Specs/Tool Spec - Vault Retrieval|Vault Retrieval]]
-- [[../../04_Tool-Specs/Tool Spec - Public Source Search|Public Source Search]]
-- [[../../04_Tool-Specs/Tool Spec - Web Source Download|Web Source Download]]
 - [[../../04_Tool-Specs/Tool Spec - Source Ingestion|Source Ingestion]]
-- `tools/source_search.py`
-- `tools/source_download.py`
 - `tools/ingest_sources.py`
 - `tools/agent_retrieve.py`
 - `tools/eval_retrieval.py`
+
+Deferred for this domain:
+
+- [[../../04_Tool-Specs/Tool Spec - Public Source Search|Public Source Search]]
+- [[../../04_Tool-Specs/Tool Spec - Web Source Download|Web Source Download]]
+- `tools/source_search.py`
+- `tools/source_download.py`
 
 ## Agent Usage
 
