@@ -50,3 +50,4 @@ Every pack should be useful inside Obsidian:
 ## Current Packs
 
 - [[Pack - Agent Create System Retrieval]]
+- [[Pack - Evidence-Based Startup Methodology]] - status: needs-source

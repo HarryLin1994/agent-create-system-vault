@@ -26,3 +26,6 @@ Run automated retrieval evals from knowledge pack golden questions:
 ```bash
 python3 tools/eval_retrieval.py --all
 ```
+
+The runner evaluates only `status: active` knowledge packs by default. Use
+`--include-draft` when intentionally checking draft or `needs-source` packs.

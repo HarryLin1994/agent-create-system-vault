@@ -34,6 +34,14 @@ Run all available pack cases:
 python3 tools/eval_retrieval.py --all
 ```
 
+By default, the runner evaluates only knowledge packs with `status: active`.
+Draft or `needs-source` packs can keep golden questions during intake without
+failing the active retrieval suite. To intentionally test non-active packs:
+
+```bash
+python3 tools/eval_retrieval.py --all --include-draft
+```
+
 ## Passing Behavior
 
 - Top results include the expected notes for supported questions.

@@ -48,6 +48,14 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Evaluate all knowledge pack notes under 02_Domain-Knowledge/Packs.",
     )
+    parser.add_argument(
+        "--include-draft",
+        action="store_true",
+        help=(
+            "Also evaluate non-active packs, such as draft or needs-source packs. "
+            "By default only active packs are evaluated."
+        ),
+    )
     parser.add_argument("--top-k", type=int, default=3, help="Expected-note cutoff.")
     parser.add_argument("--json", action="store_true", help="Emit JSON report.")
     return parser.parse_args()
@@ -107,9 +115,12 @@ def split_expected_notes(value: str) -> list[str]:
     return notes
 
 
-def parse_cases(pack_path: Path) -> list[EvalCase]:
+def parse_cases(pack_path: Path, include_draft: bool = False) -> list[EvalCase]:
     metadata, body = markdown_body(pack_path)
     if metadata.get("type") != "knowledge-pack":
+        return []
+    status = str(metadata.get("status", "")).strip().lower()
+    if not include_draft and status != "active":
         return []
     section = raw_section(body, "Golden Retrieval Questions")
     cases: list[EvalCase] = []
@@ -303,7 +314,12 @@ def failure_category(
     return ""
 
 
-def collect_cases(vault: Path, pack_values: list[str], include_all: bool) -> tuple[list[EvalCase], list[str]]:
+def collect_cases(
+    vault: Path,
+    pack_values: list[str],
+    include_all: bool,
+    include_draft: bool,
+) -> tuple[list[EvalCase], list[str]]:
     paths: list[Path] = []
     unresolved: list[str] = []
     if include_all or not pack_values:
@@ -318,14 +334,14 @@ def collect_cases(vault: Path, pack_values: list[str], include_all: bool) -> tup
     deduped = sorted(set(paths))
     cases: list[EvalCase] = []
     for path in deduped:
-        cases.extend(parse_cases(path))
+        cases.extend(parse_cases(path, include_draft=include_draft))
     return cases, unresolved
 
 
 def main() -> int:
     args = parse_args()
     vault = Path(args.vault).resolve()
-    cases, unresolved = collect_cases(vault, args.pack, args.all)
+    cases, unresolved = collect_cases(vault, args.pack, args.all, args.include_draft)
     results = [run_case(vault, case, args.top_k) for case in cases]
     failures = [result for result in results if not result["ok"]]
     report = {
