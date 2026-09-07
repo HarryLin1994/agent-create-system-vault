@@ -42,7 +42,7 @@ Give each expert the minimum tool and knowledge surface it needs:
 
 | Surface | Owner | Examples | Agent Control |
 | --- | --- | --- | --- |
-| Tools | `04_Tool-Specs` and `tools/` | `source_ingestion_scan`, `source_download`, `vault_retrieve`, `vault_validate`, `retrieval_gap_report`, `eval_retrieval` | Builder-invoked or model-invoked |
+| Tools | `04_Tool-Specs` and `tools/` | `source_ingestion_scan`, `source_search`, `source_download`, `vault_retrieve`, `vault_validate`, `retrieval_gap_report`, `eval_retrieval` | Builder-invoked or model-invoked |
 | Resources | Obsidian Markdown notes | sources, concepts, cases, knowledge packs, diagrams | Application-provided |
 | Prompts | `05_Prompts`, `07_Runbooks`, `_templates` | system prompt templates, build runbooks | User-selected or builder-selected |
 
@@ -69,6 +69,16 @@ python3 tools/source_download.py download "https://example.com/page" --domain yo
 ```
 
 Use only for explicit URLs or small same-host crawls. It checks robots rules and creates raw files plus source manifests.
+
+### `source_search`
+
+Implemented by:
+
+```bash
+python3 tools/source_search.py from-pack "Evidence-Based Startup Methodology" --report
+```
+
+Use before download when a domain needs public source candidates. It scores official, government, academic, and known-primary sources, then can write candidates into the Web Source Queue for review.
 
 ### `vault_retrieve`
 
@@ -163,6 +173,7 @@ The expert may call read-only vault tools without interrupting the user. Write t
 
 - [[Tool Spec - Vault Retrieval]]
 - [[Tool Spec - Source Ingestion]]
+- [[Tool Spec - Public Source Search]]
 - [[Tool Spec - Web Source Download]]
 - [[../09_Module-System/Domain Retrieval Modules/System Architecture - 12 Module Pipeline|System Architecture - 12 Module Pipeline]]
 - [[../09_Module-System/Domain Knowledge Retrieval v1 Pipeline|Domain Knowledge Retrieval v1 Pipeline]]

@@ -27,6 +27,14 @@ Use this queue to tell the ingestion pipeline what domain a source batch belongs
 | Human reviewer | Harry Lin |
 | Sensitivity handling | 公開創業方法論資料可直接使用。Founder notes、customer interview、pitch deck、財務模型、投資人回饋、客戶名單應視為 confidential。回答時避免暴露客戶姓名、公司內部數據、募資條件、未公開策略。 |
 
+## Priority Book Targets
+
+| Book | Author | Priority | Processing Rule |
+| --- | --- | --- | --- |
+| The Lean Startup | Eric Ries | high | 可使用官方頁、出版社 metadata、合法 preview，或使用者提供且有權處理的檔案；不要自動下載未授權全文。 |
+| Company of One: Why Staying Small Is the Next Big Thing for Business | Paul Jarvis | high | 可使用官方頁、出版社 metadata、合法 preview，或使用者提供且有權處理的檔案；不要自動下載未授權全文。 |
+| The 4-Hour Workweek | Tim Ferriss | high | 可使用官方頁、出版社 metadata、合法 preview，或使用者提供且有權處理的檔案；不要自動下載未授權全文。 |
+
 ## Golden Questions Draft
 
 Write questions the expert should answer after ingestion.

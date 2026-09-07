@@ -28,6 +28,9 @@ Use this queue for URLs that should enter the source ingestion pipeline through 
 | https://hbr.org/2013/05/why-the-lean-start-up-changes-everything | evidence-based-startup-methodology | Original HBR article explaining why lean startup changes product development and venture launch practice. | needs-review | queued |
 | https://www.nsf.gov/funding/initiatives/i-corps | evidence-based-startup-methodology | Official NSF I-Corps source for customer discovery and evidence-based commercialization context. | public | queued |
 | https://theleanstartup.com/principles | evidence-based-startup-methodology | Primary Lean Startup principles for validated learning and build-measure-learn framing. | public | queued |
+| https://theleanstartup.com/book | evidence-based-startup-methodology | Official book page for The Lean Startup priority source target. | public | queued |
+| https://www.penguin.co.uk/books/312524/company-of-one-by-jarvis-paul/9780241380239 | evidence-based-startup-methodology | Publisher page for Company of One priority source target. | public | queued |
+| https://www.penguinrandomhouse.com/books/49081/the-4-hour-workweek-expanded-and-updated-by-timothy-ferriss/ | evidence-based-startup-methodology | Publisher page for The 4-Hour Workweek priority source target. | public | queued |
 | https://www.strategyzer.com/library/the-business-model-canvas | evidence-based-startup-methodology | Strategyzer source for business model hypothesis structure. | public | queued |
 | https://www.strategyzer.com/library/the-value-proposition-canvas | evidence-based-startup-methodology | Strategyzer source for customer jobs, pains, gains, and value proposition fit. | public | queued |
 | https://www.cbinsights.com/research/report/startup-failure-reasons-top/ | evidence-based-startup-methodology | Startup failure-risk source for no market need, cash runway, team, pricing, and scaling risk patterns. | public | queued |

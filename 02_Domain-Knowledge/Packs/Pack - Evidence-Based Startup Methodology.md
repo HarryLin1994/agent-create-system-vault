@@ -24,6 +24,16 @@ Use this pack to build a startup execution advisor grounded in customer evidence
 - Decisions this pack supports: whether to start a startup idea, which assumptions to validate first, how much MVP to build, which business model risks matter, whether to pivot/persevere/continue experiments, whether the team is scaling too early, and what the next 1-2 week sprint should do.
 - Out of scope: legal, tax, accounting, investment advice, fundraising guarantees, valuation judgment, final business decisions for the founder, unsupported certainty without customer evidence, and regulated-industry compliance judgment.
 
+## Priority Book Targets
+
+| Book | Author | Priority | Public Source Rule | Use For |
+| --- | --- | --- | --- | --- |
+| The Lean Startup | Eric Ries | high | Use official book site, publisher metadata, legal previews, or user-provided files with processing permission. Do not download unauthorized full text. | Validated learning, MVP, build-measure-learn, pivot/persevere |
+| Company of One: Why Staying Small Is the Next Big Thing for Business | Paul Jarvis | high | Use official author/publisher pages, bookstore metadata, legal previews, or user-provided files with processing permission. Do not download unauthorized full text. | Staying small, scale restraint, sustainable solo/small-company operating model |
+| The 4-Hour Workweek | Tim Ferriss | high | Use official author/publisher pages, bookstore metadata, legal previews, or user-provided files with processing permission. Do not download unauthorized full text. | Automation, delegation, lifestyle-business assumptions, productivity experiments |
+
+Book content rule: do not search for, queue, download, or ingest pirated PDFs, unauthorized ebook mirrors, torrents, or full-book downloads. Use only legal public metadata, official pages, licensed subscription access, legal previews, or user-provided files that the user has permission to process.
+
 ## Retrieval Filters
 
 - Required domain: evidence-based-startup-methodology
@@ -44,6 +54,9 @@ Use this pack to build a startup execution advisor grounded in customer evidence
 | [Why the Lean Start-Up Changes Everything](https://hbr.org/2013/05/why-the-lean-start-up-changes-everything) | Original article by Steve Blank | high | queued | Lean startup framing for hypothesis testing and customer feedback loops |
 | [NSF I-Corps](https://www.nsf.gov/funding/initiatives/i-corps) | Official program source | high | queued | Customer discovery and evidence-based commercialization |
 | [The Lean Startup Principles](https://theleanstartup.com/principles) | Primary methodology source | high | queued | Validated learning, MVP framing, build-measure-learn |
+| [The Lean Startup book page](https://theleanstartup.com/book) | Official book page | high | queued | Priority book metadata and legal public context |
+| [Company of One publisher page](https://www.penguin.co.uk/books/312524/company-of-one-by-jarvis-paul/9780241380239) | Publisher page | medium | queued | Priority book metadata and legal public context |
+| [The 4-Hour Workweek publisher page](https://www.penguinrandomhouse.com/books/49081/the-4-hour-workweek-expanded-and-updated-by-timothy-ferriss/) | Publisher page | medium | queued | Priority book metadata and legal public context |
 | [Strategyzer Business Model Canvas](https://www.strategyzer.com/library/the-business-model-canvas) | Primary framework source | high | queued | Business model assumptions and model structure |
 | [Strategyzer Value Proposition Canvas](https://www.strategyzer.com/library/the-value-proposition-canvas) | Primary framework source | high | queued | Customer jobs, pains, gains, and value proposition fit |
 | [CB Insights: Why Startups Fail](https://www.cbinsights.com/research/report/startup-failure-reasons-top/) | Research report | medium | queued | Failure modes, no-market-need risk, cash/runway and scaling signals |
@@ -72,8 +85,10 @@ Use this pack to build a startup execution advisor grounded in customer evidence
 ## Included Tools
 
 - [[../../04_Tool-Specs/Tool Spec - Vault Retrieval|Vault Retrieval]]
+- [[../../04_Tool-Specs/Tool Spec - Public Source Search|Public Source Search]]
 - [[../../04_Tool-Specs/Tool Spec - Web Source Download|Web Source Download]]
 - [[../../04_Tool-Specs/Tool Spec - Source Ingestion|Source Ingestion]]
+- `tools/source_search.py`
 - `tools/source_download.py`
 - `tools/ingest_sources.py`
 - `tools/agent_retrieve.py`

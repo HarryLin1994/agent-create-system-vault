@@ -58,6 +58,7 @@ python3 tools/source_download.py crawl "https://example.com/docs/" --domain your
 - Uses a low default request rate.
 - Uses a default response size limit.
 - Does not bypass logins, paywalls, captchas, or access controls.
+- Does not download obvious pirated PDFs, unauthorized full-book downloads, torrents, or suspicious ebook mirrors.
 - Does not treat downloaded content as trusted evidence until source notes are reviewed.
 
 ## Failure Handling
@@ -67,6 +68,7 @@ python3 tools/source_download.py crawl "https://example.com/docs/" --domain your
 - If a host is unavailable, report the exception per URL.
 - If a crawl sees cross-host links, skip them unless `--cross-host` is set.
 - If a content type is unknown, save it with a safe extension and require manual review.
+- If a URL has obvious copyright-risk markers, skip it and report `copyright-risk-marker=...`.
 
 ## Related
 

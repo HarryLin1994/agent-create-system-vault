@@ -26,6 +26,26 @@ MANIFEST_DEFAULT = Path("00_Inbox") / "Source Manifests"
 DEFAULT_USER_AGENT = "agent-create-system-vault/0.1 (+local knowledge ingestion)"
 DEFAULT_MAX_BYTES = 25 * 1024 * 1024
 
+COPYRIGHT_RISK_URL_MARKERS = {
+    "annas-archive",
+    "download-epub",
+    "download-full-book",
+    "download-mobi",
+    "download-pdf",
+    "free-ebook-download",
+    "free-epub",
+    "free-pdf",
+    "full-book-pdf",
+    "full-pdf",
+    "libgen",
+    "oceanofpdf",
+    "pdfdrive",
+    "pirated",
+    "torrent",
+    "z-lib",
+    "zlibrary",
+}
+
 
 CONTENT_EXTENSIONS = {
     "application/json": ".json",
@@ -220,6 +240,21 @@ def host_key(url: str) -> str:
     return parsed.netloc.lower()
 
 
+def copyright_risk_reason(url: str) -> str:
+    parsed = urllib.parse.urlparse(url)
+    target = " ".join(
+        (
+            parsed.netloc.lower().removeprefix("www."),
+            parsed.path.lower().replace("_", "-"),
+            parsed.query.lower().replace("_", "-"),
+        )
+    )
+    for marker in COPYRIGHT_RISK_URL_MARKERS:
+        if marker in target:
+            return f"copyright-risk-marker={marker}"
+    return ""
+
+
 def wait_for_host(url: str, last_request: dict[str, float], delay: float) -> None:
     host = host_key(url)
     now = time.monotonic()
@@ -359,6 +394,10 @@ def download_urls(args: argparse.Namespace, urls: list[str]) -> dict[str, object
     for raw_url in urls:
         try:
             url = normalized_url(raw_url)
+            copyright_risk = copyright_risk_reason(url)
+            if copyright_risk:
+                skipped.append({"url": url, "reason": copyright_risk})
+                continue
             robot = robots_cache.get(host_key(url))
             if robot is None:
                 robot = fetch_robots(url, args.user_agent, args.timeout)
@@ -422,6 +461,10 @@ def crawl_urls(args: argparse.Namespace) -> dict[str, object]:
         seen.add(url)
         if not args.cross_host and host_key(url) not in seed_hosts:
             skipped.append({"url": url, "reason": "cross-host"})
+            continue
+        copyright_risk = copyright_risk_reason(url)
+        if copyright_risk:
+            skipped.append({"url": url, "reason": copyright_risk})
             continue
         try:
             robot = robots_cache.get(host_key(url))

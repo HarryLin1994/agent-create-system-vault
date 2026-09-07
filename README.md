@@ -26,6 +26,7 @@ The current development focus is the module system and domain knowledge retrieva
 - `04_Tool-Specs/Tool Spec - Vault Retrieval.md` defines the local retrieval tool.
 - `tools/agent_retrieve.py` returns evidence packs with Obsidian links for human review.
 - `tools/ingest_sources.py` scans raw source files and creates source manifests with stable IDs and hashes.
+- `tools/source_search.py` finds public source candidates, scores them for trust/public accessibility, and can queue them for review.
 - `tools/source_download.py` downloads explicit web URLs or small same-host crawls into raw source intake with robots checks.
 - `tools/validate_vault.py` checks module contracts, retrieval metadata, and Obsidian links.
 - `tools/eval_retrieval.py` runs knowledge-pack golden retrieval questions.
@@ -35,7 +36,10 @@ The current development focus is the module system and domain knowledge retrieva
 Core CLI dependencies:
 
 - Python 3.10 or newer.
-- Python standard library only for `agent_retrieve.py`, `ingest_sources.py`, `source_download.py`, `validate_vault.py`, and `eval_retrieval.py`.
+- Python standard library only for `agent_retrieve.py`, `ingest_sources.py`, `source_search.py`, `source_download.py`, `validate_vault.py`, and `eval_retrieval.py`.
+- Optional `BRAVE_SEARCH_API_KEY` for live public-source search through Brave Search API. Without it, `source_search.py` generates manual search queries and still scores URLs already listed in a knowledge pack.
+- Optional book-source connector environment variables: `GOOGLE_BOOKS_API_KEY`, `OREILLY_API_TOKEN`, `OREILLY_AUTH_SCHEME`, and `AMAZON_PARTNER_TAG`.
+- Source search/download tools are designed for legal public sources, official metadata, licensed access, and user-provided files with processing permission. They do not support pirated PDFs or unauthorized full-book downloads.
 
 Optional human/review dependencies:
 
@@ -79,6 +83,26 @@ Download explicit web sources:
 ```bash
 python3 tools/source_download.py download "https://example.com/page" --domain your-domain
 ```
+
+Find public source candidates:
+
+```bash
+python3 tools/source_search.py from-pack "Evidence-Based Startup Methodology" --report
+```
+
+Find book metadata/access candidates:
+
+```bash
+python3 tools/source_search.py books \
+  --book "The Lean Startup | Eric Ries" \
+  --book "Company of One: Why Staying Small Is the Next Big Thing for Business | Paul Jarvis" \
+  --book "The 4-Hour Workweek | Tim Ferriss" \
+  --domain evidence-based-startup-methodology \
+  --report
+```
+
+For local Python certificate issues only, add `--insecure-skip-tls-verify` to
+provider smoke tests. Keep TLS verification enabled for normal use.
 
 ## Tool Policy
 
