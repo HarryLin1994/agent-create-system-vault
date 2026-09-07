@@ -42,14 +42,22 @@ A source is trusted only for the claims it can actually support. Prefer sources 
 | gap | Retrieval found no adequate support. The expert should ask for more facts, search a trusted source, or state the gap. |
 | conflict | Credible sources disagree. The expert should compare sources and avoid a single confident conclusion. |
 
-## Review Checklist
+## AI Self-Review Checklist
 
 - Authority: Who produced the source, and are they qualified for this claim?
 - Accuracy: Does the source show evidence, methodology, or traceable references?
 - Currency: Is the source current enough for this domain?
 - Relevance: Does it answer this exact question, not just nearby keywords?
 - Purpose: Is the source trying to inform, persuade, sell, or speculate?
-- Provenance: Can a human reviewer trace the claim back to the source?
+- Provenance: Can the claim be traced back to the source?
+
+## Human Checkpoints
+
+Humans only confirm:
+
+- Input: the right source batch, domain, permission, sensitivity, and target expert scope are being processed.
+- Output: the produced notes and evidence are understandable and useful.
+- Performance: golden questions and real usage show acceptable behavior.
 
 ## Runtime Rule
 
@@ -58,5 +66,6 @@ When certainty is not supported, the expert must say what is missing and what wo
 ## Related
 
 - [[Domain Knowledge Retrieval v1 Pipeline]]
+- [[AI Self-Review and Human Checkpoint Standard]]
 - [[../03_Capability-Modules/Capability - Evidence Grounding|Evidence Grounding]]
 - [[../02_Domain-Knowledge/Concepts/Concept - Evidence Hierarchy|Evidence Hierarchy]]

@@ -61,7 +61,7 @@ Human-readable output includes:
 - Answerability: `supported`, `partial`, or `gap`.
 - Matching note title and best matching heading.
 - Note type, reliability, score, tags, and relative path.
-- Obsidian URI for human review.
+- Obsidian URI for AI review traceability and human checkpoints.
 - Summary, source reference, usage guidance, caveat, and excerpt when available.
 - Gap messages when retrieval cannot support the answer.
 
@@ -111,6 +111,7 @@ JSON output uses this stable shape:
 - Creating eval cases.
 - Inspecting whether a knowledge pack supports an expert answer.
 - Producing links a human can inspect in Obsidian.
+- Producing links AI can self-review before human input/output/performance checkpoints.
 
 ## Expert Tool Policy
 

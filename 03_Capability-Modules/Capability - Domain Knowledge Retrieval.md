@@ -35,7 +35,7 @@ Use when a skill or agent needs domain-specific expertise from a local corpus, s
 - Confidence and reliability labels.
 - Usage guidance for the consuming skill.
 - Gaps when retrieval cannot support an expert answer.
-- Obsidian links for human review.
+- Obsidian links for AI review traceability and human input/output/performance checkpoints.
 
 ## Dependencies
 
@@ -57,8 +57,9 @@ Use when a skill or agent needs domain-specific expertise from a local corpus, s
 - Prefer scoped knowledge packs over whole-vault retrieval when the expert domain is known.
 - Retrieve with keyword and metadata matching first; add embeddings after failure cases show the limit.
 - Return evidence with source, excerpt, confidence, and how the consuming skill should use it.
-- Include Obsidian links in evidence output so humans can inspect the note behind a claim.
+- Include Obsidian links in evidence output so AI can self-review citations and humans can checkpoint outputs when needed.
 - Mark answerability as `supported`, `partial`, `gap`, or `conflict`.
+- Ask humans only for input acceptance, output acceptance, or performance acceptance.
 
 ## Retention Criteria
 
@@ -95,6 +96,7 @@ Drop or defer when:
 - Retrieval returns relevant notes for known domain questions.
 - Retrieval exposes gaps when the corpus lacks support.
 - Evidence packs include source, confidence, and usage guidance.
+- AI self-review checks source alignment, caveats, and answerability before use.
 - Bad retrieval results create feedback for metadata, chunking, or retention rules.
 - [[../06_Evals/Eval - Domain Retrieval Relevance|Domain Retrieval Relevance]]
 

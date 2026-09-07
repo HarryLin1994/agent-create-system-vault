@@ -10,7 +10,7 @@ updated: 2026-09-07
 
 ## One-line Summary
 
-Normalize ranked retrieval results into a stable evidence pack for expert agents and human review.
+Normalize ranked retrieval results into a stable evidence pack for expert agents, AI self-review, and human checkpoints.
 
 ## Purpose
 
@@ -35,6 +35,7 @@ Use after retrieval ranking and before the expert produces an answer.
 - Answerability field placeholder or final label.
 - Obsidian URI for every result.
 - Gaps list when evidence is missing.
+- AI review trace for citation, caveat, and confidence alignment.
 
 ## Dependencies
 

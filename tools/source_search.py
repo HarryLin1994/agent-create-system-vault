@@ -290,7 +290,7 @@ def add_common_args(parser: argparse.ArgumentParser) -> None:
     parser.add_argument(
         "--report",
         action="store_true",
-        help="Write a human-review Markdown report.",
+        help="Write a human-checkpoint Markdown report.",
     )
     parser.add_argument(
         "--report-dir",
@@ -1178,7 +1178,7 @@ def write_markdown_report(
     lines = [
         "---",
         "type: public-source-search-report",
-        "status: needs-human-review",
+        "status: needs-human-checkpoint",
         "tags: [web-sources, public-source-search, ingestion]",
         "reliability: draft",
         f"domain: {domain or 'needs-domain-review'}",
@@ -1189,7 +1189,7 @@ def write_markdown_report(
         "",
         "## One-line Summary",
         "",
-        "Human-review report for public source candidates discovered before ingestion.",
+        "Human-checkpoint report for public source candidates discovered before ingestion.",
         "",
         "## Search Inputs",
         "",

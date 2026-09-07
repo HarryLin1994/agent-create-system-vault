@@ -10,7 +10,7 @@ updated: 2026-09-07
 
 ## One-line Summary
 
-Design domain knowledge retrieval as a source-backed evidence system: trusted material is transformed into Obsidian-readable knowledge packs, retrieved through scoped tools, and returned to expert agents as evidence packs with answerability, reliability, caveats, and human-review links.
+Design domain knowledge retrieval as a source-backed evidence system: trusted material is transformed into Obsidian-readable knowledge packs, retrieved through scoped tools, and returned to expert agents as evidence packs with answerability, reliability, caveats, AI self-review fields, and human checkpoint links.
 
 ## Goal
 
@@ -242,7 +242,7 @@ Drop or defer a unit when it is:
 9. Add retrieval filters and golden questions to the knowledge pack.
 10. Run `vault_retrieve` smoke tests.
 
-The agent should not silently convert raw media into expert knowledge when OCR, visual interpretation, provenance, or source authority is uncertain. It should mark the note as `draft`, `needs-vision`, `needs-source`, or `needs-human-review`.
+The agent should not silently convert raw media into expert knowledge when OCR, visual interpretation, provenance, or source authority is uncertain. It should mark the note as `draft`, `needs-vision`, `needs-source`, `needs-ai-review`, or `needs-human-checkpoint`.
 
 ## Chunking Rules
 
@@ -329,7 +329,7 @@ Minimum V1 expert tools:
 | --- | --- | --- |
 | `vault_retrieve` | Retrieve scoped evidence from the vault. | `python3 tools/agent_retrieve.py "query" --json` |
 | `knowledge_pack_inspect` | Inspect available knowledge for the expert's domain. | `--type knowledge-pack --domain <domain> --json` |
-| `vault_open_note` | Give humans a review link for evidence. | `obsidian_uri` in evidence pack results |
+| `vault_open_note` | Give humans a checkpoint link for evidence, outputs, or eval behavior. | `obsidian_uri` in evidence pack results |
 | `retrieval_gap_report` | Explain what the corpus cannot support. | `answerability` and `gaps` fields |
 | `eval_retrieval` | Test golden questions. | [[../06_Evals/Eval - Domain Retrieval Relevance|Domain Retrieval Relevance]] |
 
@@ -347,9 +347,9 @@ V1 is local CLI plus Obsidian. Future MCP integration should map the vault this 
 
 The expert should not receive every resource automatically. The client or retrieval layer should provide selected resources based on pack scope and query.
 
-## Obsidian Human Loop
+## AI Review and Human Checkpoint Loop
 
-Every important machine output must point back to human-readable notes.
+Every important machine output must point back to human-readable notes. AI self-review owns source, extraction, citation, caveat, and confidence quality. Humans only checkpoint input acceptance, output acceptance, and performance acceptance.
 
 Required Obsidian behavior:
 
@@ -361,6 +361,8 @@ Required Obsidian behavior:
 - Put actual domain material in `02_Domain-Knowledge`.
 - Put tool boundaries in `04_Tool-Specs`.
 - Put regression checks in `06_Evals`.
+- Record AI review status for provenance, extraction fit, citation precision, caveats, and confidence.
+- Record human checkpoint status only for input acceptance, output acceptance, and performance acceptance.
 
 ## Eval Plan
 
@@ -380,7 +382,7 @@ Minimum acceptance for a knowledge pack:
 - Expected note appears in top 3 for supported questions.
 - Unsupported question produces `gap` or `partial`.
 - Evidence pack includes Obsidian links.
-- Human reviewer can inspect cited notes without reading JSON only.
+- Human checkpoint owner can inspect cited notes and eval behavior without reading JSON only.
 
 ## Version Roadmap
 

@@ -2,7 +2,7 @@
 type: source-manifest
 source_id: ""
 source_type: ""
-status: draft
+status: needs-ai-review
 domain: ""
 tags: [source-manifest, ingestion, raw-source]
 reliability: draft
@@ -18,7 +18,12 @@ source_url: ""
 version: ""
 permission: needs-review
 sensitivity: unknown
-reviewer: ""
+ai_reviewer: ""
+ai_review_status: pending
+human_checkpoint_owner: ""
+human_input_status: pending
+human_output_status: pending
+human_effect_status: pending
 updated: ""
 ---
 
@@ -48,11 +53,21 @@ updated: ""
 
 - Extraction adapter:
 - Expected outputs:
-- Human review required:
+- AI review required:
 
-## Human Inputs Needed
+## AI Self-Review
 
--
+- Provenance check:
+- Permission/sensitivity check:
+- Extraction fit check:
+- Citation/confidence check:
+- Issues to resolve before source note creation:
+
+## Human Checkpoints
+
+- Input acceptance:
+- Output acceptance:
+- Performance acceptance:
 
 ## Processing Notes
 

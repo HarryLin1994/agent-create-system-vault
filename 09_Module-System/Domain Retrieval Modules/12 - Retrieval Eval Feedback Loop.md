@@ -26,7 +26,8 @@ Use before trusting a knowledge pack, after adding sources, after changing ranki
 - Expected note paths.
 - Negative notes that should not be cited.
 - Retrieval output.
-- Human review judgment.
+- AI self-review result.
+- Human performance checkpoint when needed.
 
 ## Outputs
 
@@ -34,6 +35,7 @@ Use before trusting a knowledge pack, after adding sources, after changing ranki
 - Retrieval failure category.
 - Fix recommendation.
 - Updated metadata, notes, chunks, pack filters, ranking, or evals.
+- Human-readable performance checkpoint summary.
 
 ## Dependencies
 
@@ -57,6 +59,8 @@ Use before trusting a knowledge pack, after adding sources, after changing ranki
   - ranking wrong
   - evidence pack missing field
   - gap/conflict label wrong
+- AI should self-review whether failures belong to source intake, extraction, metadata, chunking, ranking, pack scope, or eval design before asking for human input.
+- Humans should only be asked whether the observed behavior is acceptable or what performance target changed.
 
 ## Failure Modes
 

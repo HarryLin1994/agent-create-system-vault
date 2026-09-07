@@ -11,7 +11,7 @@ domain: agent-create-system
 
 ## One-line Summary
 
-Find public source candidates for a domain knowledge pack, score them for trust and public accessibility, and optionally queue them for download/review.
+Find public source candidates for a domain knowledge pack, score them for trust and public accessibility, and optionally queue them for AI review and human checkpoints.
 
 ## Command
 
@@ -82,7 +82,7 @@ python3 tools/source_search.py books \
 - Ranked source candidates with URL, title, snippet, host, source kind, public-likelihood label, trust score, and recommendation.
 - Manual search URLs when no API key is configured.
 - Optional rows appended to `00_Inbox/Web Source Queue.md`.
-- Optional human-review Markdown report under `00_Inbox/Public Source Searches/`.
+- Optional checkpoint Markdown report under `00_Inbox/Public Source Searches/`.
 
 ## Dependencies
 
@@ -98,7 +98,7 @@ python3 tools/source_search.py books \
 
 | Connector | What It Returns | Auth | Ingestion Rule |
 | --- | --- | --- | --- |
-| `web` | Search-engine candidates from Brave API or manual search URLs | Optional `BRAVE_SEARCH_API_KEY` | Queue candidates for review, then use `source_download` only on explicit approved URLs |
+| `web` | Search-engine candidates from Brave API or manual search URLs | Optional `BRAVE_SEARCH_API_KEY` | Queue candidates for AI review, then use `source_download` only on explicit approved URLs |
 | `openlibrary` | Public library metadata and Open Library work pages | None | Treat as metadata, not replacement for book content |
 | `google-books` | Public Google Books metadata and preview/info links | Optional `GOOGLE_BOOKS_API_KEY` | Treat previews as metadata/legal excerpts only |
 | `oreilly` | O'Reilly Learning search results when token exists; otherwise public O'Reilly search page | `OREILLY_API_TOKEN` for API | Treat as subscription/owned-source candidate unless public page is explicitly accessible |
@@ -119,7 +119,7 @@ python3 tools/source_search.py books \
 - Does not download pages; hand off explicit URLs to `source_download`.
 - Does not download copyrighted books or subscription content.
 - Does not queue pirated PDFs, unauthorized full-book downloads, torrents, or suspicious ebook mirrors.
-- Does not treat discovered candidates as trusted evidence until ingestion and source-note review.
+- Does not treat discovered candidates as trusted evidence until ingestion and AI source-note review.
 - Defaults queued candidates to `permission: needs-review`.
 - Verifies TLS by default; `--insecure-skip-tls-verify` is a local development workaround only.
 

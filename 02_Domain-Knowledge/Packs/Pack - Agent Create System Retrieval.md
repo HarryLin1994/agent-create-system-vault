@@ -19,7 +19,7 @@ Use this pack when building or reviewing the domain knowledge retrieval module s
 ## Scope
 
 - Domain: agent-create-system
-- Target users: agent builder, module designer, human reviewer
+- Target users: agent builder, module designer, AI reviewer, human checkpoint owner
 - Decisions this pack supports: how domain knowledge retrieval should ingest sources, write notes, scope retrieval, return evidence, and evaluate quality
 - Out of scope: production OCR provider choice, production vector database choice, and the first external expert domain
 

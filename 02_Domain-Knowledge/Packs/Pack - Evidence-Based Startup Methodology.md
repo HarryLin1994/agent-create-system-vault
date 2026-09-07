@@ -20,7 +20,7 @@ Use this pack to build a startup execution advisor grounded in customer evidence
 
 - Domain: 證據導向創業方法論，涵蓋創業想法、customer discovery、MVP、商業模式、PMF、go-to-market，以及 pivot / persevere 的執行方法。
 - Target expert: 創業執行顧問。
-- Target users: founders, product builders, early startup operators, and human reviewers.
+- Target users: founders, product builders, early startup operators, AI reviewers, and human checkpoint owners.
 - Decisions this pack supports: whether to start a startup idea, which assumptions to validate first, how much MVP to build, which business model risks matter, whether to pivot/persevere/continue experiments, whether the team is scaling too early, and what the next 1-2 week sprint should do.
 - Out of scope: legal, tax, accounting, investment advice, fundraising guarantees, valuation judgment, final business decisions for the founder, unsupported certainty without customer evidence, and regulated-industry compliance judgment.
 

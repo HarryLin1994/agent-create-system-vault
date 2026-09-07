@@ -62,7 +62,7 @@ The retrieval module should return:
 - Reliability or confidence.
 - How the consuming skill should use the result.
 - Gaps when the corpus does not support an expert answer.
-- Obsidian link for human review.
+- Obsidian link for AI review traceability and human checkpoint.
 
 ## Knowledge Pack Boundary
 
@@ -80,7 +80,7 @@ A knowledge pack defines:
 
 ## Runtime Rule
 
-The consuming expert should treat the evidence pack as input evidence, not as the final answer. It must compare evidence with the user's facts, label uncertainty, and avoid citing notes that do not directly support the answer.
+The consuming expert should treat the evidence pack as input evidence, not as the final answer. It must compare evidence with the user's facts, label uncertainty, avoid citing notes that do not directly support the answer, and self-review citation/confidence before presenting the output.
 
 ## Source Quality
 

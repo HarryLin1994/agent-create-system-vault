@@ -44,13 +44,13 @@ Use official docs, protocol specs, and well-scoped engineering references to des
 
 - Claim: Domain knowledge retrieval needs a pipeline when source material is large, multimodal, reusable, or decision-critical.
   Evidence: RAG architecture guidance describes a data pipeline that processes media through chunking, enrichment, embedding/indexing, persistence, retrieval, and evaluation before runtime use.
-  Caveat: A tiny corpus can start manually, but the same stages should still be explicit so quality can be reviewed.
+  Caveat: A tiny corpus can start manually, but the same stages should still be explicit so quality can be self-reviewed and checkpointed.
 
 - Claim: Books, reports, images, tables, and diagrams need different extraction paths.
   Evidence: Document extraction systems distinguish raw text, layout, key-value pairs, tables, checkboxes, and custom entities because each carries different retrievable evidence.
   Caveat: V1 can use manual or semi-automated extraction, but the output must normalize into the same source note and evidence pack schema.
 
-- Claim: Human review links should be first-class output.
+- Claim: Review and checkpoint links should be first-class output.
   Evidence: This vault is maintained in Obsidian, so every agent-facing evidence item should resolve to an Obsidian note path or URI.
   Caveat: Obsidian links do not prove a claim; they only preserve traceability.
 
@@ -65,7 +65,7 @@ Use official docs, protocol specs, and well-scoped engineering references to des
 - Reliability floor
 - Answerability label
 - Source trust tier
-- Obsidian review link
+- Obsidian checkpoint link
 - Tool/resource/prompt split
 - Extraction gate
 - Media-specific ingestion
@@ -73,7 +73,7 @@ Use official docs, protocol specs, and well-scoped engineering references to des
 ## Cases Extracted
 
 - Bad retrieval returns a popular note whose keywords match but whose evidence does not support the expert answer.
-- Bad tool design gives the expert raw notes without schema, source reliability, or human-review links.
+- Bad tool design gives the expert raw notes without schema, source reliability, or review/checkpoint links.
 - Bad Obsidian integration creates machine-only JSON that humans cannot navigate or maintain.
 
 ## Agent Usage

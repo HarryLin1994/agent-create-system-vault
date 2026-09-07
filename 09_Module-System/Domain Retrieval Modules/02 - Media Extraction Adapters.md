@@ -26,18 +26,19 @@ Use after source intake and before deciding which extracted material should beco
 - Raw source type.
 - File path, URL, or source reference.
 - Source manifest with `source_id`, hash, extension, and source type when available.
-- Human notes about what matters.
+- Human input checkpoint notes about what matters.
 
 ## Outputs
 
 - Candidate extracted units.
 - OCR text or visual caption when relevant.
 - Table, chart, schema, or layout summaries.
-- Extraction caveats and `needs-human-review` flags.
+- Extraction caveats and `needs-ai-review` flags.
 
 ## Dependencies
 
 - [[../Domain Knowledge Retrieval Design Spec]]
+- [[../AI Self-Review and Human Checkpoint Standard]]
 - [[01 - Source Intake and Trust]]
 - Trusted document extraction references in [[../../02_Domain-Knowledge/Sources/Source - Retrieval and Tooling Best Practices|Retrieval and Tooling Best Practices]]
 
@@ -50,13 +51,13 @@ Use after source intake and before deciding which extracted material should beco
 - Chart or diagram: extract entities, relationships, axes, values, process flow, and visual caveats.
 - Transcript: extract decisions, context, speaker, outcome, quote snippets, and caveats.
 - Database export: extract schema, field definitions, row-level examples, aggregate patterns, freshness, and privacy constraints.
-- Mark uncertain OCR or visual interpretation as `needs-human-review`.
+- Mark uncertain OCR or visual interpretation as `needs-ai-review` or `needs-vision`; escalate to a human checkpoint only when output or performance is affected.
 
 ## Failure Modes
 
 - Treating image/chart/table evidence as ordinary text.
 - Losing page, slide, row, or figure provenance.
-- Overinterpreting a visual without human verification.
+- Overinterpreting a visual without AI self-review and explicit caveats.
 - Extracting only summaries and losing methodology or limitations.
 
 ## Eval Coverage

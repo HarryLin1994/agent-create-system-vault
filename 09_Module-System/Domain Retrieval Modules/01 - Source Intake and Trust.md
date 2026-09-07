@@ -29,7 +29,7 @@ Use when new raw material enters the vault: book, PDF, report, article, screensh
 - File hash when the source is a local file.
 - Access/permission status.
 - Intended expert domain.
-- Human reviewer when available.
+- AI reviewer and human checkpoint owner when available.
 
 ## Outputs
 
@@ -37,12 +37,13 @@ Use when new raw material enters the vault: book, PDF, report, article, screensh
 - Source manifest in `00_Inbox/Source Manifests` for local files.
 - Reliability label: `draft`, `low`, `medium`, or `high`.
 - Source trust tier.
-- `needs-source`, `needs-human-review`, or `active` status.
+- `needs-source`, `needs-ai-review`, `needs-human-checkpoint`, `ai-reviewed`, or `active` status.
 - Obsidian links to downstream extracted notes.
 
 ## Dependencies
 
 - [[../Source Trust and Certainty Standard]]
+- [[../AI Self-Review and Human Checkpoint Standard]]
 - [[../../_templates/Knowledge Source Template|Knowledge Source Template]]
 - [[../../02_Domain-Knowledge/Sources/README|Sources]]
 
@@ -54,6 +55,8 @@ Use when new raw material enters the vault: book, PDF, report, article, screensh
 - Record source date and freshness caveat when the domain changes over time.
 - Record permission and privacy constraints for internal or database sources.
 - Use `tools/ingest_sources.py scan` to assign stable `source_id` and `sha256` before extraction.
+- Let AI review source identity, provenance, permission/sensitivity consistency, and reliability before extraction.
+- Ask humans only for input acceptance when the source batch, domain, permission, sensitivity, or intended expert questions are unclear.
 
 ## Failure Modes
 
@@ -61,6 +64,7 @@ Use when new raw material enters the vault: book, PDF, report, article, screensh
 - Weak source is labeled as high reliability.
 - Stale source is used for current claims.
 - Internal or private data enters retrieval without permission notes.
+- Humans are asked to do line-by-line content review instead of input/output/performance checkpoints.
 
 ## Eval Coverage
 

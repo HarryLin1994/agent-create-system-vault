@@ -45,7 +45,7 @@
     { "id": "ranker", "type": "backend", "label": "08 Ranker", "sublabel": "relevance + diversity", "stage": 3, "row": 2, "tag": "top-k" },
     { "id": "evidence_pack", "type": "messagebus", "label": "09 Evidence Pack", "sublabel": "structured output", "stage": 3, "row": 0, "tag": "JSON + links" },
     { "id": "gap_conflict", "type": "security", "label": "10 Gap/Conflict", "sublabel": "answerability", "stage": 4, "row": 0, "tag": "support label" },
-    { "id": "review_interface", "type": "frontend", "label": "11 Obsidian Review", "sublabel": "human audit", "stage": 4, "row": 2, "tag": "review links" },
+    { "id": "review_interface", "type": "frontend", "label": "11 Obsidian Checkpoint", "sublabel": "input/output/effect", "stage": 4, "row": 2, "tag": "checkpoint links" },
     { "id": "eval_loop", "type": "backend", "label": "12 Eval Loop", "sublabel": "golden questions", "stage": 4, "row": 4, "tag": "feedback" }
   ],
   "flows": [
@@ -58,7 +58,7 @@
     { "id": "router-to-ranker", "from": "query_router", "to": "ranker", "label": "scoped query", "classification": "filters", "variant": "emphasis", "route": "vertical-channel" },
     { "id": "ranker-to-pack", "from": "ranker", "to": "evidence_pack", "label": "ranked results", "classification": "diverse top-k", "variant": "emphasis", "route": "vertical-channel" },
     { "id": "evidence-to-gap", "from": "evidence_pack", "to": "gap_conflict", "label": "evidence", "classification": "support check", "variant": "security", "route": "vertical-channel" },
-    { "id": "gap-to-review", "from": "gap_conflict", "to": "review_interface", "label": "answerability + links", "classification": "human review", "variant": "default", "route": "vertical-channel" },
+    { "id": "gap-to-review", "from": "gap_conflict", "to": "review_interface", "label": "answerability + links", "classification": "human checkpoint", "variant": "default", "route": "vertical-channel" },
     { "id": "review-to-eval", "from": "review_interface", "to": "eval_loop", "label": "review judgment", "classification": "golden cases", "variant": "dashed", "route": "vertical-channel" }
   ]
 }

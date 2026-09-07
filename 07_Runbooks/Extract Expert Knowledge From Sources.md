@@ -15,7 +15,7 @@ Use this runbook to turn books, pictures, reports, transcripts, and internal dat
 
 Use this whenever raw material needs to become retrievable knowledge for an expert agent.
 
-Do not skip this for long PDFs, books, images, diagrams, charts, screenshots, scanned pages, internal reports, database exports, or any material that a human must audit later.
+Do not skip this for long PDFs, books, images, diagrams, charts, screenshots, scanned pages, internal reports, database exports, or any material that must be traceable later.
 
 ## Output
 
@@ -58,7 +58,7 @@ Drop or defer anything that is duplicate, motivational, vague, unsupported, too 
 1. Put original files in `00_Inbox/Raw Sources/`.
 2. Describe the batch in [[../00_Inbox/Source Intake Queue|Source Intake Queue]].
 3. Run `python3 tools/ingest_sources.py scan` to generate source manifests.
-4. Review generated manifests in `00_Inbox/Source Manifests/`.
+4. Run AI self-review on generated manifests in `00_Inbox/Source Manifests/`.
 5. Create a source note in `02_Domain-Knowledge/Sources`.
 6. Fill metadata: `type`, `source_type`, `domain`, `status`, `reliability`, `updated`, source title, author, URL/path, hash, permission, and source date.
 7. Summarize the source in one line.
@@ -69,7 +69,19 @@ Drop or defer anything that is duplicate, motivational, vague, unsupported, too 
 12. Add useful notes to a knowledge pack.
 13. Add golden retrieval questions.
 14. Run retrieval smoke tests and retrieval evals.
-15. Mark unresolved issues as `needs-source`, `needs-human-review`, or `needs-vision`.
+15. Mark unresolved issues as `needs-source`, `needs-ai-review`, `needs-vision`, or `needs-human-checkpoint`.
+
+## Review Model
+
+AI owns source identity, extraction accuracy, citation alignment, caveats, and confidence labels.
+
+Human checkpoints are limited to:
+
+- Input acceptance: source batch, domain, permission, sensitivity, and intended expert questions are correct enough to process.
+- Output acceptance: generated notes, evidence packs, or prompt changes are understandable and useful.
+- Performance acceptance: golden questions and real tasks behave acceptably.
+
+Do not ask humans to inspect every extracted unit unless output or performance fails.
 
 ## Retrieval Smoke Test
 

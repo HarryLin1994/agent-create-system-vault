@@ -129,7 +129,7 @@
       "id": "review_interface",
       "type": "frontend",
       "label": "11 Obsidian Review",
-      "sublabel": "human audit",
+      "sublabel": "input/output/effect",
       "stage": 4,
       "row": 3,
       "tag": "review links"
@@ -232,7 +232,7 @@
       "from": "gap_conflict",
       "to": "review_interface",
       "label": "answerability + links",
-      "classification": "human review",
+      "classification": "human checkpoint",
       "variant": "default",
       "route": "vertical-channel"
     },

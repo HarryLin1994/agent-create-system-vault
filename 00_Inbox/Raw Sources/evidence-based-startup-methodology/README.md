@@ -16,13 +16,15 @@ Put user-provided files for the startup execution advisor here.
 - Do not use public source search for this domain unless the human explicitly re-enables it.
 - Public-source discovery is paused to avoid false-positive source judgments.
 - Raw files remain ignored by git.
+- AI self-review handles source/extraction/citation/confidence checks.
+- Human checkpoints only confirm input, output, and performance effect.
 
 ## Good Inputs
 
 - Notes from books you own or have permission to process.
 - Your own summaries, highlights, and chapter notes.
 - Founder notes and startup operating notes.
-- Customer interview notes after sensitive names and identifiers are reviewed.
+- Customer interview notes after sensitive names and identifiers are intentionally included or removed.
 - Pitch decks, financial models, investor feedback, and customer lists only when marked confidential and intentionally included.
 - PDF, DOC/DOCX, TXT, Markdown, PPT/PPTX, JPG/PNG, CSV, JSON, and XLSX files.
 
@@ -46,3 +48,4 @@ python3 tools/ingest_sources.py scan \
 ```
 
 Then review generated manifests in [[../../Source Manifests/README|Source Manifests]] before extracting knowledge notes.
+AI should perform the manifest review; human checkpoint is limited to whether the input batch is right, the generated output is useful, and retrieval performance is acceptable.

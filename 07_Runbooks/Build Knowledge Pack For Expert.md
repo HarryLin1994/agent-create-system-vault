@@ -9,7 +9,7 @@ reliability: medium
 
 ## One-line Summary
 
-Use this runbook to turn source material into a scoped knowledge pack that an expert agent can retrieve from and a human can inspect in Obsidian.
+Use this runbook to turn source material into a scoped knowledge pack that an expert agent can retrieve from and a human can checkpoint through inputs, outputs, and performance.
 
 ## Inputs
 
@@ -31,7 +31,7 @@ Use this runbook to turn source material into a scoped knowledge pack that an ex
 ## Process
 
 1. Define the expert's supported decisions.
-2. Add or review source notes in `02_Domain-Knowledge/Sources`.
+2. Add source notes in `02_Domain-Knowledge/Sources` after AI self-review.
 3. Extract reusable concepts into `02_Domain-Knowledge/Concepts`.
 4. Extract concrete cases into `02_Domain-Knowledge/Cases`.
 5. Drop trivia, duplicate claims, and material that does not change expert behavior.
@@ -42,6 +42,13 @@ Use this runbook to turn source material into a scoped knowledge pack that an ex
 10. Add three to five golden retrieval questions.
 11. Run retrieval smoke tests.
 12. Attach [[../06_Evals/Eval - Domain Retrieval Relevance|Domain Retrieval Relevance]].
+
+## Review Model
+
+- AI self-review checks source fit, extraction quality, citation precision, caveats, and confidence labels.
+- Human input checkpoint confirms the domain, source batch, sensitivity, and supported decisions.
+- Human output checkpoint confirms the pack is readable and useful.
+- Human performance checkpoint confirms golden questions and real tasks produce acceptable behavior.
 
 ## Retrieval Smoke Test
 

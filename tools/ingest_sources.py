@@ -178,7 +178,7 @@ def render_manifest(
 type: source-manifest
 source_id: {quote_yaml(source.source_id)}
 source_type: {quote_yaml(source.source_type)}
-status: draft
+status: needs-ai-review
 domain: {quote_yaml(domain)}
 tags: [source-manifest, ingestion, raw-source]
 reliability: draft
@@ -194,7 +194,12 @@ source_url: {quote_yaml(source.source_url)}
 version: ""
 permission: {quote_yaml(permission)}
 sensitivity: {quote_yaml(sensitivity)}
-reviewer: ""
+ai_reviewer: ""
+ai_review_status: pending
+human_checkpoint_owner: ""
+human_input_status: pending
+human_output_status: pending
+human_effect_status: pending
 updated: {quote_yaml(updated)}
 ---
 
@@ -202,7 +207,7 @@ updated: {quote_yaml(updated)}
 
 ## One-line Summary
 
-Review this raw source before extraction.
+Register this raw source for AI self-review, extraction planning, and human input/output/effect checkpoints.
 
 ## Source Identity
 
@@ -228,14 +233,21 @@ Review this raw source before extraction.
 
 - Extraction adapter: {adapter_for(source.source_type)}
 - Expected outputs:
-- Human review required: yes
+- AI review required: yes
 
-## Human Inputs Needed
+## AI Self-Review
 
-- Confirm domain.
-- Confirm permission and sensitivity.
-- Confirm source title, author, version, and source date when available.
-- Add the expert questions this source should help answer.
+- Provenance check:
+- Permission/sensitivity check:
+- Extraction fit check:
+- Citation/confidence check:
+- Issues to resolve before source note creation:
+
+## Human Checkpoints
+
+- Input acceptance: confirm domain, permission, sensitivity, and intended expert questions.
+- Output acceptance: confirm generated notes/evidence are understandable and useful.
+- Performance acceptance: confirm golden questions or real tasks behave acceptably.
 
 ## Processing Notes
 
@@ -252,7 +264,7 @@ def adapter_for(kind: str) -> str:
     return {
         "data-export": "schema/table extraction",
         "document": "digital document text and structure extraction",
-        "image": "OCR or vision caption with human review",
+        "image": "OCR or vision caption with AI self-review",
         "markdown": "direct Markdown section extraction",
         "pdf": "PDF text extraction or OCR if scanned",
         "presentation": "slide text, speaker-note, image, and table extraction",

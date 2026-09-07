@@ -42,26 +42,27 @@ python3 tools/ingest_sources.py scan \
 - One Markdown source manifest per raw file.
 - Stable `source_id` derived from filename and SHA-256 hash.
 - File metadata: raw path, extension, source type, file size, modified time, and hash.
-- Human-review fields for domain, title, author, source date, permission, sensitivity, and reviewer.
+- AI self-review fields for provenance, permission/sensitivity, extraction fit, citation alignment, and confidence.
+- Human checkpoint fields for input acceptance, output acceptance, and performance acceptance.
 
 ## Use When
 
 - New PDFs, Word files, text files, slides, images, scans, or data exports are added.
 - A source batch needs provenance before extraction.
-- A human needs to verify what entered the knowledge pipeline.
+- A human needs to checkpoint what entered the knowledge pipeline, what came out, or whether performance is acceptable.
 
 ## Safety Limits
 
 - Raw files are ignored by git.
 - The scan does not upload files.
 - The scan does not OCR, caption, embed, summarize, or rewrite source content.
-- The scan does not mark a source as reliable; generated manifests start as `draft`.
-- `--force` can overwrite generated manifest notes and should be used only after review.
+- The scan does not mark a source as reliable; generated manifests start as `needs-ai-review`.
+- `--force` can overwrite generated manifest notes and should be used only after the owner accepts the overwrite.
 
 ## Failure Handling
 
 - If the raw folder is empty, report zero files and do nothing.
-- If a file extension is unknown, mark `source_type: unknown` and require manual inspection.
+- If a file extension is unknown, mark `source_type: unknown` and require AI inspection before source-note creation.
 - If a manifest already exists, skip it unless `--force` is set.
 - If permission or sensitivity is unknown, keep `needs-review` and `unknown`.
 - If a manifest is created for the wrong domain, edit the manifest before creating source notes.
@@ -73,5 +74,6 @@ python3 tools/ingest_sources.py scan \
 - [[../00_Inbox/Source Manifests/README|Source Manifests]]
 - [[../07_Runbooks/Extract Expert Knowledge From Sources|Extract Expert Knowledge From Sources]]
 - [[../09_Module-System/Domain Retrieval Modules/01 - Source Intake and Trust|Source Intake and Trust]]
+- [[../09_Module-System/AI Self-Review and Human Checkpoint Standard|AI Self-Review and Human Checkpoint Standard]]
 - [[Tool Spec - Web Source Download]]
 - [[Tool Spec - Vault Retrieval]]

@@ -33,6 +33,7 @@ Use when the agent has access to a knowledge base, source library, RAG retrieval
 - Recommendation.
 - Confidence level.
 - What would change the recommendation.
+- AI self-review result for citation and confidence alignment.
 
 ## Dependencies
 
@@ -46,6 +47,8 @@ Use when the agent has access to a knowledge base, source library, RAG retrieval
 - Use specific cases or concepts instead of broad claims.
 - Mark unsupported claims as assumptions.
 - Mention uncertainty when sources are weak or context-specific.
+- Self-review whether each cited note directly supports the recommendation.
+- Escalate to a human checkpoint only for input, output, or performance acceptance.
 
 ## Failure Modes
 

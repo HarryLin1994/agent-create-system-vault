@@ -49,7 +49,7 @@ python3 tools/eval_retrieval.py --all --include-draft
 - The expert uses evidence only when it is relevant to the question.
 - Partial support is labeled as partial.
 - Missing support is labeled as a gap.
-- Human-readable output includes Obsidian links so a reviewer can inspect the notes.
+- Human-readable output includes Obsidian links so AI can self-review citations and humans can checkpoint outputs.
 
 ## Failing Behavior
 

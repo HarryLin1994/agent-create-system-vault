@@ -20,6 +20,7 @@ Track reusable modules here.
 | [[../04_Tool-Specs/Tool Spec - Vault Retrieval|Vault Retrieval]] | tool | active | Need to search vault notes | [[../06_Evals/Eval - Domain Retrieval Relevance|Domain Retrieval Relevance]] |
 | [[../04_Tool-Specs/Tool Spec - Expert Vault Interface|Expert Vault Interface]] | tool | active | Expert needs vault retrieval plus Obsidian review links | [[../06_Evals/Eval - Domain Retrieval Relevance|Domain Retrieval Relevance]] |
 | [[Source Trust and Certainty Standard]] | standard | active | Need to judge whether a source can support certainty | [[../06_Evals/Eval - Refuse Unsupported Certainty|Refuse Unsupported Certainty]] |
+| [[AI Self-Review and Human Checkpoint Standard]] | standard | active | Need to separate AI content review from human input/output/performance checkpoints | [[../06_Evals/Eval - Domain Retrieval Relevance|Domain Retrieval Relevance]] |
 
 ## Registry Rules
 

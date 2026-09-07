@@ -18,7 +18,7 @@ Give each expert the minimum tool and knowledge surface it needs:
 
 - Search the right knowledge pack.
 - Inspect source-backed evidence.
-- Open Obsidian notes for human review.
+- Open Obsidian notes for AI review traceability and human checkpoints.
 - Report gaps when evidence is missing.
 - Reuse runbooks and templates as prompts.
 
@@ -28,12 +28,12 @@ Give each expert the minimum tool and knowledge surface it needs:
 - Agent blueprint and known domain.
 - Optional knowledge pack name.
 - Required reliability level or freshness constraint.
-- Human review need when the answer cites vault evidence.
+- Human checkpoint need when input, output, or performance requires acceptance.
 
 ## Outputs
 
 - Scoped retrieval query and filters.
-- Evidence pack with answerability, source references, caveats, and Obsidian links.
+- Evidence pack with answerability, source references, caveats, AI self-review context, and Obsidian links.
 - Vault validation report when module or pack structure changed.
 - Retrieval eval report when golden questions exist.
 - Gap or conflict report when evidence is insufficient.
@@ -58,7 +58,7 @@ Implemented by:
 python3 tools/ingest_sources.py scan
 ```
 
-Use before extraction when raw local files enter the vault. It creates source manifests with `source_id`, hash, source type, permission, and review fields.
+Use before extraction when raw local files enter the vault. It creates source manifests with `source_id`, hash, source type, permission, AI self-review fields, and human checkpoint fields.
 
 ### `source_download`
 
@@ -147,12 +147,14 @@ The expert may call read-only vault tools without interrupting the user. Write t
 - Do not cite notes that are not directly relevant.
 - If `answerability` is `partial` or `gap`, say what is missing.
 - Prefer official, primary, or high-reliability sources for claims that can change user decisions.
+- Self-review source alignment, caveats, citation precision, and confidence before returning an answer.
+- Ask humans only for input acceptance, output acceptance, or performance acceptance.
 
 ## Failure Handling
 
 - If no scoped evidence is found, broaden terms once, then report the gap.
 - If a cited note lacks source metadata, treat the answer as partial until the source is fixed.
-- If Obsidian links fail, run `tools/validate_vault.py` and fix links before trusting review output.
+- If Obsidian links fail, run `tools/validate_vault.py` and fix links before trusting checkpoint output.
 - If golden questions fail, route the failure to source intake, extraction, metadata, chunking, ranking, pack scope, or gap labeling.
 - If a tool would write, fetch, or delete data, require a separate tool spec and audit trail before production use.
 
@@ -175,6 +177,7 @@ The expert may call read-only vault tools without interrupting the user. Write t
 - [[Tool Spec - Source Ingestion]]
 - [[Tool Spec - Public Source Search]]
 - [[Tool Spec - Web Source Download]]
+- [[../09_Module-System/AI Self-Review and Human Checkpoint Standard|AI Self-Review and Human Checkpoint Standard]]
 - [[../09_Module-System/Domain Retrieval Modules/System Architecture - 12 Module Pipeline|System Architecture - 12 Module Pipeline]]
 - [[../09_Module-System/Domain Knowledge Retrieval v1 Pipeline|Domain Knowledge Retrieval v1 Pipeline]]
 - [[../09_Module-System/Source Trust and Certainty Standard|Source Trust and Certainty Standard]]

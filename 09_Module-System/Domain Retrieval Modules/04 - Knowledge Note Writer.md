@@ -65,4 +65,4 @@ Use after [[03 - Knowledge Unit Extraction Gate]] accepts a unit.
 ## Eval Coverage
 
 - `tools/validate_vault.py` metadata and Obsidian-link checks.
-- Human review checklist in [[11 - Obsidian Human Review Interface]].
+- AI self-review and human checkpoint checklist in [[11 - Obsidian Human Review Interface]].

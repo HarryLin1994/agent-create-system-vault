@@ -24,17 +24,23 @@ The manifest is the bridge between raw files and retrievable Obsidian knowledge.
 - `modified_at`
 - `extension`
 
-## Human Fields
+## AI Review Fields
 
-- `domain`
-- `title`
-- `author`
-- `source_date`
-- `version`
-- `permission`
-- `sensitivity`
-- `reviewer`
+- `ai_reviewer`
+- `ai_review_status`
+- provenance check
+- permission/sensitivity check
+- extraction fit check
+- citation/confidence check
+
+## Human Checkpoint Fields
+
+Humans only need to confirm:
+
+- Input acceptance: source batch, domain, permission, sensitivity, and intended expert questions.
+- Output acceptance: generated notes/evidence are understandable and useful.
+- Performance acceptance: golden questions or real tasks behave acceptably.
 
 ## Next Step
 
-After reviewing a manifest, create or update a source note in `02_Domain-Knowledge/Sources`.
+After AI self-review passes the manifest, create or update a source note in `02_Domain-Knowledge/Sources`. Use human checkpoints only for input, output, and performance acceptance.

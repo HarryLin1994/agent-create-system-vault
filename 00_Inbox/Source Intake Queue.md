@@ -24,7 +24,8 @@ Use this queue to tell the ingestion pipeline what domain a source batch belongs
 | Out of scope | 法律、稅務、會計、投資建議<br>保證募資成功、估值判斷或投資決策<br>替 founder 做最終商業決策<br>沒有客戶證據時直接判定產品一定會成功<br>高度監管產業的合規判斷，例如醫療、金融、保險 |
 | Permission | needs-review |
 | Sensitivity | mixed |
-| Human reviewer | Harry Lin |
+| Human checkpoint owner | Harry Lin |
+| Human checkpoint scope | input acceptance, output acceptance, performance acceptance |
 | Sensitivity handling | 公開創業方法論資料可直接使用。Founder notes、customer interview、pitch deck、財務模型、投資人回饋、客戶名單應視為 confidential。回答時避免暴露客戶姓名、公司內部數據、募資條件、未公開策略。 |
 | Current source mode | user-provided local files only |
 | Public source search | paused to avoid false-positive source judgments |
@@ -54,6 +55,8 @@ Write questions the expert should answer after ingestion.
 
 - Put raw files in [[Raw Sources/evidence-based-startup-methodology/README|Raw Sources - Evidence-Based Startup Methodology]].
 - Source manifests will be generated in [[Source Manifests/README|Source Manifests]].
+- AI self-review checks source identity, extraction fit, citation alignment, and confidence before source notes are trusted.
+- Human checkpoints only confirm input, output, and performance effect.
 
 ## Related
 

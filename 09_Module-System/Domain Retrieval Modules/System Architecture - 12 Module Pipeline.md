@@ -24,7 +24,7 @@ This Markdown note is the canonical human-readable architecture. HTML files are 
 
 ## Pipeline Summary
 
-Raw sources enter through intake and trust checks, then flow through media-specific extraction and an expert-usage gate. Accepted units become Obsidian notes and scoped knowledge packs. At runtime, the retrieval tool builds heading chunks, routes the expert query through filters, ranks candidates, returns an evidence pack, and labels support quality. Human review and evals feed corrections back into source notes, metadata, chunks, ranking, packs, and golden questions.
+Raw sources enter through intake and trust checks, then flow through media-specific extraction and an expert-usage gate. Accepted units become Obsidian notes and scoped knowledge packs. At runtime, the retrieval tool builds heading chunks, routes the expert query through filters, ranks candidates, returns an evidence pack, and labels support quality. AI self-review checks source, extraction, citation, and confidence quality. Human checkpoints focus only on input acceptance, output acceptance, and performance acceptance.
 
 ## Mermaid Overview
 
@@ -40,7 +40,7 @@ flowchart LR
   M08["08 Ranker<br/>candidates -> ranked top-k"]
   M09["09 Evidence Pack<br/>ranked top-k -> evidence JSON"]
   M10["10 Gap/Conflict<br/>evidence -> answerability"]
-  M11["11 Obsidian Review<br/>evidence -> human audit"]
+  M11["11 Obsidian Checkpoint<br/>evidence -> input/output/effect"]
   M12["12 Eval Loop<br/>golden questions -> fixes"]
 
   M01 --> M02 --> M03 --> M04 --> M05 --> M06 --> M07 --> M08 --> M09 --> M10 --> M11 --> M12
@@ -54,7 +54,7 @@ flowchart LR
 
 | Module | Purpose | Inputs | Outputs |
 | --- | --- | --- | --- |
-| [[01 - Source Intake and Trust]] | Register source identity, permission, provenance, and reliability before extraction. | Raw source path, URL, or file; source type; author/owner; publication/update date; permission; target domain; reviewer. | Source note; provenance metadata; trust tier; reliability label; review status; downstream links. |
+| [[01 - Source Intake and Trust]] | Register source identity, permission, provenance, and reliability before extraction. | Raw source path, URL, or file; source type; author/owner; publication/update date; permission; target domain; AI reviewer; human checkpoint owner. | Source note; provenance metadata; trust tier; reliability label; AI review status; downstream links. |
 | [[02 - Media Extraction Adapters]] | Preserve useful structure from each source medium. | Source note; raw content/media; source type; file path/URL; extraction hints. | Candidate units; OCR/captions; table/chart/layout summaries; extraction caveats; review flags. |
 | [[03 - Knowledge Unit Extraction Gate]] | Decide what raw material is expert-usable. | Candidate units; domain; supported decisions; source reliability/caveats; existing notes. | Kept units; dropped/deferred units with reasons; unit type; destination folder/pack. |
 | [[04 - Knowledge Note Writer]] | Convert kept units into human-readable, retrievable Obsidian notes. | Kept unit; source reference; domain; reliability; caveat; target pack. | Markdown note; flat metadata; summary; source links; agent usage guidance; review status. |
@@ -64,8 +64,8 @@ flowchart LR
 | [[08 - Retrieval Ranker]] | Rank and diversify retrieval candidates. | Scoped query; candidate chunks; note metadata; pack scope; reliability labels. | Ranked top-k; score per result; best heading per note; excluded or low-quality candidates. |
 | [[09 - Evidence Pack Builder]] | Normalize retrieval results into agent-facing evidence. | Ranked results; query/filter context; source refs; caveats; usage guidance; Obsidian paths. | Evidence pack JSON; human-readable evidence list; Obsidian links; gaps placeholder. |
 | [[10 - Gap and Conflict Detector]] | Label whether evidence can support the expert answer. | Evidence candidates; source reliability/date/caveats; unsupported areas; user question. | `supported`, `partial`, `gap`, or `conflict`; gap messages; conflict notes; next action. |
-| [[11 - Obsidian Human Review Interface]] | Make pipeline artifacts inspectable by humans. | Evidence pack; source notes; wiki links; review flags; eval reports. | Reviewable indexes; Obsidian links; review decisions; fix requests. |
-| [[12 - Retrieval Eval Feedback Loop]] | Test retrieval quality and route fixes upstream. | Golden questions; expected notes; forbidden notes; retrieval output; human judgment. | Pass/fail report; failure category; fixes to sources, metadata, chunks, ranking, packs, or evals. |
+| [[11 - Obsidian Human Review Interface]] | Make pipeline artifacts checkpointable by humans and reviewable by AI. | Evidence pack; source notes; wiki links; AI review flags; input/output/performance checkpoint fields; eval reports. | Checkpointable indexes; Obsidian links; AI review results; human input/output/effect acceptance; fix requests. |
+| [[12 - Retrieval Eval Feedback Loop]] | Test retrieval quality and route fixes upstream. | Golden questions; expected notes; forbidden notes; retrieval output; AI self-review result; human performance checkpoint. | Pass/fail report; failure category; performance summary; fixes to sources, metadata, chunks, ranking, packs, or evals. |
 
 ## Main Path
 
@@ -75,7 +75,7 @@ flowchart LR
 4. Units become Obsidian notes through [[04 - Knowledge Note Writer]].
 5. Notes are bundled into scoped memory by [[05 - Knowledge Pack Builder]].
 6. Runtime retrieval uses [[06 - Retrieval Index Builder]], [[07 - Query Scope Router]], [[08 - Retrieval Ranker]], [[09 - Evidence Pack Builder]], and [[10 - Gap and Conflict Detector]].
-7. Humans review the result in [[11 - Obsidian Human Review Interface]].
+7. AI self-reviews the result and humans checkpoint input/output/performance in [[11 - Obsidian Human Review Interface]].
 8. [[12 - Retrieval Eval Feedback Loop]] turns failures into concrete upstream fixes.
 
 ## Module Completion Map
@@ -84,7 +84,7 @@ flowchart LR
 | --- | --- | --- |
 | 01-05 | Runbooks, templates, source trust standard, and knowledge pack contract. | `tools/validate_vault.py` checks source/pack metadata, required sections, and links. |
 | 06-10 | `tools/agent_retrieve.py` builds heading chunks, applies filters, ranks results, returns evidence packs, and labels answerability. | Retrieval smoke tests and `tools/eval_retrieval.py`. |
-| 11 | Obsidian wiki links, metadata, index notes, and evidence-pack `obsidian_uri` fields. | `tools/validate_vault.py` checks links and review-facing fields. |
+| 11 | Obsidian wiki links, metadata, index notes, evidence-pack `obsidian_uri` fields, AI review trace, and human checkpoint fields. | `tools/validate_vault.py` checks links and checkpoint-facing fields. |
 | 12 | Golden retrieval questions and eval runner. | `tools/eval_retrieval.py` reports pass/fail and failure categories. |
 
 ## Tools
@@ -98,7 +98,7 @@ python3 tools/eval_retrieval.py --all
 
 ## Feedback Path
 
-Eval or human-review failures should be fixed at the owning module:
+Eval, AI-review, or human-checkpoint failures should be fixed at the owning module:
 
 | Failure | Fix Owner |
 | --- | --- |
@@ -112,12 +112,15 @@ Eval or human-review failures should be fixed at the owning module:
 | Expected note not in top-k | [[08 - Retrieval Ranker]] |
 | Evidence pack missing required field | [[09 - Evidence Pack Builder]] |
 | Unsupported evidence labeled too confidently | [[10 - Gap and Conflict Detector]] |
-| Human cannot inspect the evidence path | [[11 - Obsidian Human Review Interface]] |
+| Human cannot inspect input/output/performance checkpoints | [[11 - Obsidian Human Review Interface]] |
+| AI self-review misses citation, confidence, or extraction issues | [[11 - Obsidian Human Review Interface]] |
 | Eval case is absent, stale, or too easy | [[12 - Retrieval Eval Feedback Loop]] |
 
 ## Design Evidence
 
 The design is grounded in [[../../02_Domain-Knowledge/Sources/Source - Retrieval and Tooling Best Practices|Retrieval and Tooling Best Practices]], which records official and provider sources for RAG pipeline design, chunking, metadata filtering, document extraction, MCP tool/resource/prompt boundaries, and Obsidian properties/internal links.
+
+The review boundary is defined in [[../AI Self-Review and Human Checkpoint Standard]], which assigns source, extraction, citation, and confidence review to AI while keeping humans focused on input, output, and performance checkpoints.
 
 ## Open Decisions
 

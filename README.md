@@ -24,7 +24,7 @@ The current development focus is the module system and domain knowledge retrieva
 - `09_Module-System/Domain Retrieval Modules/System Architecture - 12 Module Pipeline.md` maps the 12 modules into one pipeline with module inputs and outputs.
 - `02_Domain-Knowledge` stores sources, concepts, cases, and scoped knowledge packs.
 - `04_Tool-Specs/Tool Spec - Vault Retrieval.md` defines the local retrieval tool.
-- `tools/agent_retrieve.py` returns evidence packs with Obsidian links for human review.
+- `tools/agent_retrieve.py` returns evidence packs with Obsidian links for AI review traceability and human checkpoints.
 - `tools/ingest_sources.py` scans raw source files and creates source manifests with stable IDs and hashes.
 - `tools/source_search.py` finds public source candidates, scores them for trust/public accessibility, and can queue them for review.
 - `tools/source_download.py` downloads explicit web URLs or small same-host crawls into raw source intake with robots checks.
