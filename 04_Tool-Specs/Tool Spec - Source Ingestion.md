@@ -73,6 +73,5 @@ python3 tools/ingest_sources.py scan \
 - [[../00_Inbox/Source Manifests/README|Source Manifests]]
 - [[../07_Runbooks/Extract Expert Knowledge From Sources|Extract Expert Knowledge From Sources]]
 - [[../09_Module-System/Domain Retrieval Modules/01 - Source Intake and Trust|Source Intake and Trust]]
-- [[Tool Spec - Source Intake UI]]
 - [[Tool Spec - Web Source Download]]
 - [[Tool Spec - Vault Retrieval]]

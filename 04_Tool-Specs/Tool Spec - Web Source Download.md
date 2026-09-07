@@ -74,4 +74,3 @@ python3 tools/source_download.py crawl "https://example.com/docs/" --domain your
 - [[../00_Inbox/Raw Sources/README|Raw Sources]]
 - [[../00_Inbox/Source Manifests/README|Source Manifests]]
 - [[Tool Spec - Source Ingestion]]
-- [[Tool Spec - Source Intake UI]]
