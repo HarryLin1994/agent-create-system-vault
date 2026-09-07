@@ -49,6 +49,7 @@ Use after notes or knowledge packs change, or on demand for local CLI retrieval.
 - Skip `.obsidian`, templates when inappropriate, hidden folders, and tool internals.
 - Chunk by Markdown heading in V1.
 - Include title, type, tags, domain, reliability, heading, and source reference in searchable text.
+- Skip knowledge-pack eval metadata sections such as `Golden Retrieval Questions` and `Related Evals` when building runtime evidence chunks.
 - Return only the best chunk per note by default to avoid duplicate result flooding.
 - Defer embeddings until metadata and eval failures show lexical search is insufficient.
 
@@ -62,4 +63,5 @@ Use after notes or knowledge packs change, or on demand for local CLI retrieval.
 ## Eval Coverage
 
 - Retrieval smoke tests using `tools/agent_retrieve.py`.
-- Future metadata validator and index health report.
+- `tools/validate_vault.py` metadata and Obsidian-link checks.
+- `tools/eval_retrieval.py` expected-note ranking checks.

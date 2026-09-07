@@ -4,6 +4,7 @@ tool_name: vault_retrieval
 status: active
 tags: [tool, retrieval, rag, markdown]
 reliability: medium
+domain: agent-create-system
 ---
 
 # Tool Spec - Vault Retrieval
@@ -31,6 +32,13 @@ python3 agent-create-system-vault/tools/agent_retrieve.py \
   --domain startup \
   --tag pricing \
   --json
+```
+
+Validation and eval helpers:
+
+```bash
+python3 agent-create-system-vault/tools/validate_vault.py
+python3 agent-create-system-vault/tools/eval_retrieval.py --all
 ```
 
 ## Inputs
@@ -123,9 +131,12 @@ The expert must still:
 - If too many duplicate concepts appear, create or refine a knowledge pack.
 - If a source lacks provenance, mark the result as partial or gap.
 - If retrieval is too shallow, move to embeddings later.
+- If metadata or Obsidian links are broken, run `tools/validate_vault.py`.
+- If ranking changes or a knowledge pack changes, run `tools/eval_retrieval.py --all`.
 
 ## Related
 
 - [[../09_Module-System/Domain Knowledge Retrieval v1 Pipeline|Domain Knowledge Retrieval v1 Pipeline]]
+- [[../09_Module-System/Domain Retrieval Modules/System Architecture - 12 Module Pipeline|System Architecture - 12 Module Pipeline]]
 - [[../09_Module-System/Source Trust and Certainty Standard|Source Trust and Certainty Standard]]
 - [[../06_Evals/Eval - Domain Retrieval Relevance|Domain Retrieval Relevance]]

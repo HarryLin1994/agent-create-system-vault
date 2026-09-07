@@ -1,0 +1,278 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "Domain Retrieval 12 Module Pipeline",
+    "output": "09_Module-System/Domain Retrieval Modules/System Architecture - 12 Module Pipeline.html",
+    "viewBox": [1080, 860],
+    "quality_profile": "showcase",
+    "views": [
+      {
+        "id": "intake-to-pack",
+        "label": "Intake to pack",
+        "focus": ["source_intake", "media_extract", "unit_gate", "note_writer", "pack_builder"],
+        "note": "Follow raw sources into trusted notes and scoped knowledge packs."
+      },
+      {
+        "id": "runtime-retrieval",
+        "label": "Runtime retrieval",
+        "focus": ["index_builder", "query_router", "ranker", "evidence_pack", "gap_conflict"],
+        "note": "Trace an expert question through index, scope, ranking, and answerability."
+      },
+      {
+        "id": "human-quality",
+        "label": "Human and eval loop",
+        "focus": ["review_interface", "eval_loop", "source_intake", "pack_builder", "ranker"],
+        "note": "Use Obsidian review and golden questions to improve upstream modules."
+      }
+    ]
+  },
+  "stages": [
+    { "label": "Source intake" },
+    { "label": "Extraction" },
+    { "label": "Knowledge store" },
+    { "label": "Retrieval runtime" },
+    { "label": "Quality loop" }
+  ],
+  "nodes": [
+    {
+      "id": "source_intake",
+      "type": "security",
+      "label": "01 Source Intake",
+      "sublabel": "trust + provenance",
+      "stage": 0,
+      "row": 0,
+      "tag": "raw sources"
+    },
+    {
+      "id": "media_extract",
+      "type": "backend",
+      "label": "02 Media Extract",
+      "sublabel": "book/report/image/data",
+      "stage": 1,
+      "row": 0,
+      "tag": "adapters"
+    },
+    {
+      "id": "unit_gate",
+      "type": "security",
+      "label": "03 Unit Gate",
+      "sublabel": "keep/drop",
+      "stage": 1,
+      "row": 2,
+      "tag": "expert usable"
+    },
+    {
+      "id": "note_writer",
+      "type": "database",
+      "label": "04 Note Writer",
+      "sublabel": "Obsidian notes",
+      "stage": 2,
+      "row": 1,
+      "tag": "metadata"
+    },
+    {
+      "id": "pack_builder",
+      "type": "database",
+      "label": "05 Pack Builder",
+      "sublabel": "scoped memory",
+      "stage": 2,
+      "row": 2,
+      "tag": "knowledge pack"
+    },
+    {
+      "id": "index_builder",
+      "type": "messagebus",
+      "label": "06 Index Builder",
+      "sublabel": "heading chunks",
+      "stage": 2,
+      "row": 4,
+      "tag": "search index"
+    },
+    {
+      "id": "query_router",
+      "type": "backend",
+      "label": "07 Query Router",
+      "sublabel": "pack + filters",
+      "stage": 3,
+      "row": 4,
+      "tag": "runtime query"
+    },
+    {
+      "id": "ranker",
+      "type": "backend",
+      "label": "08 Ranker",
+      "sublabel": "relevance + diversity",
+      "stage": 3,
+      "row": 2,
+      "tag": "top-k"
+    },
+    {
+      "id": "evidence_pack",
+      "type": "messagebus",
+      "label": "09 Evidence Pack",
+      "sublabel": "structured output",
+      "stage": 3,
+      "row": 0,
+      "tag": "JSON + links"
+    },
+    {
+      "id": "gap_conflict",
+      "type": "security",
+      "label": "10 Gap/Conflict",
+      "sublabel": "answerability",
+      "stage": 4,
+      "row": 1,
+      "tag": "support label"
+    },
+    {
+      "id": "review_interface",
+      "type": "frontend",
+      "label": "11 Obsidian Review",
+      "sublabel": "human audit",
+      "stage": 4,
+      "row": 3,
+      "tag": "review links"
+    },
+    {
+      "id": "eval_loop",
+      "type": "backend",
+      "label": "12 Eval Loop",
+      "sublabel": "golden questions",
+      "stage": 4,
+      "row": 4,
+      "tag": "feedback"
+    }
+  ],
+  "flows": [
+    {
+      "id": "source-to-extract",
+      "from": "source_intake",
+      "to": "media_extract",
+      "label": "source record",
+      "classification": "provenance",
+      "variant": "emphasis",
+      "route": "straight"
+    },
+    {
+      "id": "extract-to-gate",
+      "from": "media_extract",
+      "to": "unit_gate",
+      "label": "candidates",
+      "classification": "typed extraction",
+      "variant": "emphasis",
+      "route": "vertical-channel"
+    },
+    {
+      "id": "gate-to-notes",
+      "from": "unit_gate",
+      "to": "note_writer",
+      "label": "kept",
+      "classification": "decision-useful",
+      "variant": "emphasis",
+      "route": "vertical-channel"
+    },
+    {
+      "id": "notes-to-pack",
+      "from": "note_writer",
+      "to": "pack_builder",
+      "label": "notes",
+      "classification": "source-backed",
+      "variant": "emphasis",
+      "route": "vertical-channel",
+      "labelAt": [630, 428]
+    },
+    {
+      "id": "pack-to-index",
+      "from": "pack_builder",
+      "to": "index_builder",
+      "label": "scope + filters",
+      "classification": "retrieval boundary",
+      "variant": "emphasis",
+      "route": "vertical-channel"
+    },
+    {
+      "id": "index-to-router",
+      "from": "index_builder",
+      "to": "query_router",
+      "label": "indexed chunks",
+      "classification": "metadata",
+      "variant": "default",
+      "route": "straight"
+    },
+    {
+      "id": "router-to-ranker",
+      "from": "query_router",
+      "to": "ranker",
+      "label": "scoped query",
+      "classification": "filters",
+      "variant": "emphasis",
+      "route": "vertical-channel"
+    },
+    {
+      "id": "ranker-to-pack",
+      "from": "ranker",
+      "to": "evidence_pack",
+      "label": "ranked results",
+      "classification": "diverse top-k",
+      "variant": "emphasis",
+      "route": "vertical-channel"
+    },
+    {
+      "id": "evidence-to-gap",
+      "from": "evidence_pack",
+      "to": "gap_conflict",
+      "label": "evidence candidates",
+      "classification": "support check",
+      "variant": "security",
+      "route": "vertical-channel"
+    },
+    {
+      "id": "gap-to-review",
+      "from": "gap_conflict",
+      "to": "review_interface",
+      "label": "answerability + links",
+      "classification": "human review",
+      "variant": "default",
+      "route": "vertical-channel"
+    },
+    {
+      "id": "review-to-eval",
+      "from": "review_interface",
+      "to": "eval_loop",
+      "label": "review judgment",
+      "classification": "golden cases",
+      "variant": "dashed",
+      "route": "vertical-channel"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "Main Evidence Path",
+      "items": [
+        "Raw sources become trusted source records before extraction",
+        "Only kept knowledge units become Obsidian notes and packs",
+        "Runtime retrieval returns evidence packs, not final answers"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Human Audit Path",
+      "items": [
+        "Each evidence result carries source metadata and Obsidian links",
+        "Humans inspect provenance, caveats, and answerability",
+        "Review flags feed extraction and pack quality decisions"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "Quality Loop",
+      "items": [
+        "Golden questions test whether expected notes are retrieved",
+        "Failures classify source, metadata, chunking, routing, ranking, or gap issues",
+        "Ranking is tuned only after eval evidence exists"
+      ]
+    }
+  ]
+}

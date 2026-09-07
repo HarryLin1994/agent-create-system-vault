@@ -42,6 +42,9 @@ V1 is complete when:
 - Humans have a runbook for modules 1 through 5 and 11.
 - Evals exist for module 12.
 - Obsidian links connect planning, specs, runbooks, tool specs, and evals.
+- [[System Architecture - 12 Module Pipeline]] documents the full module input/output contract.
+- `tools/validate_vault.py` checks metadata, module contracts, and Obsidian links.
+- `tools/eval_retrieval.py` runs knowledge-pack golden retrieval questions.
 
 ## Related
 

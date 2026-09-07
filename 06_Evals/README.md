@@ -20,3 +20,9 @@ Use [[../_templates/Eval Case Template|Eval Case Template]].
 
 - [[Eval - Refuse Unsupported Certainty|Refuse Unsupported Certainty]]
 - [[Eval - Domain Retrieval Relevance|Domain Retrieval Relevance]]
+
+Run automated retrieval evals from knowledge pack golden questions:
+
+```bash
+python3 tools/eval_retrieval.py --all
+```

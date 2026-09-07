@@ -51,6 +51,10 @@ STOPWORDS = {
     "with",
 }
 
+NON_EVIDENCE_SECTIONS = {
+    "knowledge-pack": {"Golden Retrieval Questions", "Related Evals"},
+}
+
 ALIASES = {
     "agent": ["agent"],
     "agents": ["agent"],
@@ -342,6 +346,8 @@ def chunk_notes(notes: list[Note]) -> list[Chunk]:
             start = match.end()
             end = matches[index + 1].start() if index + 1 < len(matches) else len(note.text)
             text = note.text[start:end].strip()
+            if heading in NON_EVIDENCE_SECTIONS.get(note.note_type, set()):
+                continue
             if not text:
                 continue
             searchable = " ".join(

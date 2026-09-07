@@ -62,4 +62,4 @@ Use when new raw material enters the vault: book, PDF, report, article, screensh
 ## Eval Coverage
 
 - [[../../06_Evals/Eval - Domain Retrieval Relevance|Domain Retrieval Relevance]]
-- Source metadata validator in V1.1.
+- `tools/validate_vault.py` source metadata checks.

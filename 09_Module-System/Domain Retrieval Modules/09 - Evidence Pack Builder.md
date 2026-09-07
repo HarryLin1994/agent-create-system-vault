@@ -60,5 +60,5 @@ Use after retrieval ranking and before the expert produces an answer.
 
 ## Eval Coverage
 
-- JSON schema validation in V1.1.
+- Evidence pack field checks in retrieval eval reports.
 - [[../../06_Evals/Eval - Domain Retrieval Relevance|Domain Retrieval Relevance]]

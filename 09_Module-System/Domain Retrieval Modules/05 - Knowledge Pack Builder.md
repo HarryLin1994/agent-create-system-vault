@@ -65,4 +65,5 @@ Use when an expert agent needs domain knowledge or when extracted notes should b
 ## Eval Coverage
 
 - [[../../06_Evals/Eval - Domain Retrieval Relevance|Domain Retrieval Relevance]]
-- Pack health report in V1.1.
+- `tools/validate_vault.py` pack contract checks.
+- `tools/eval_retrieval.py` golden question checks.

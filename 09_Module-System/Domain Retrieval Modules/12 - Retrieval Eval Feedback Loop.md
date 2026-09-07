@@ -68,4 +68,4 @@ Use before trusting a knowledge pack, after adding sources, after changing ranki
 ## Eval Coverage
 
 - This module owns [[../../06_Evals/Eval - Domain Retrieval Relevance|Domain Retrieval Relevance]].
-- Automated eval runner planned for V1.1.
+- `tools/eval_retrieval.py` runs knowledge-pack golden retrieval questions.

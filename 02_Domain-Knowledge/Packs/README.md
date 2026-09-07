@@ -46,3 +46,7 @@ Every pack should be useful inside Obsidian:
 - [[../README|Domain Knowledge]]
 - [[../../09_Module-System/Domain Knowledge Retrieval v1 Pipeline|Domain Knowledge Retrieval v1 Pipeline]]
 - [[../../04_Tool-Specs/Tool Spec - Vault Retrieval|Vault Retrieval]]
+
+## Current Packs
+
+- [[Pack - Agent Create System Retrieval]]

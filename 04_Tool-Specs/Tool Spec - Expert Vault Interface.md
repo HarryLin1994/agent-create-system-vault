@@ -22,11 +22,27 @@ Give each expert the minimum tool and knowledge surface it needs:
 - Report gaps when evidence is missing.
 - Reuse runbooks and templates as prompts.
 
+## Inputs
+
+- Expert or user question.
+- Agent blueprint and known domain.
+- Optional knowledge pack name.
+- Required reliability level or freshness constraint.
+- Human review need when the answer cites vault evidence.
+
+## Outputs
+
+- Scoped retrieval query and filters.
+- Evidence pack with answerability, source references, caveats, and Obsidian links.
+- Vault validation report when module or pack structure changed.
+- Retrieval eval report when golden questions exist.
+- Gap or conflict report when evidence is insufficient.
+
 ## Interface Model
 
 | Surface | Owner | Examples | Agent Control |
 | --- | --- | --- | --- |
-| Tools | `04_Tool-Specs` and `tools/` | `vault_retrieve`, `retrieval_gap_report`, `eval_retrieval` | Model-invoked |
+| Tools | `04_Tool-Specs` and `tools/` | `vault_retrieve`, `vault_validate`, `retrieval_gap_report`, `eval_retrieval` | Model-invoked |
 | Resources | Obsidian Markdown notes | sources, concepts, cases, knowledge packs, diagrams | Application-provided |
 | Prompts | `05_Prompts`, `07_Runbooks`, `_templates` | system prompt templates, build runbooks | User-selected or builder-selected |
 
@@ -60,6 +76,16 @@ python3 tools/agent_retrieve.py "pack name or domain" --type knowledge-pack --js
 
 Use before answering when the expert has a known domain or pack.
 
+### `vault_validate`
+
+Implemented by:
+
+```bash
+python3 tools/validate_vault.py
+```
+
+Use before trusting a module or knowledge-pack change. It checks metadata, required sections, and Obsidian links.
+
 ### `retrieval_gap_report`
 
 V1 implementation: read the `answerability` and `gaps` fields returned by `vault_retrieve`.
@@ -68,9 +94,13 @@ Use when retrieved evidence is partial or missing.
 
 ### `eval_retrieval`
 
-V1 implementation: manual eval using [[../06_Evals/Eval - Domain Retrieval Relevance|Domain Retrieval Relevance]] and the pack's golden retrieval questions.
+Implemented by:
 
-Future implementation can automate golden question checks.
+```bash
+python3 tools/eval_retrieval.py --all
+```
+
+Use after source, pack, metadata, chunking, or ranking changes. It runs knowledge-pack golden questions and reports failure categories.
 
 ## Approval Policy
 
@@ -88,6 +118,14 @@ The expert may call read-only vault tools without interrupting the user. Write t
 - If `answerability` is `partial` or `gap`, say what is missing.
 - Prefer official, primary, or high-reliability sources for claims that can change user decisions.
 
+## Failure Handling
+
+- If no scoped evidence is found, broaden terms once, then report the gap.
+- If a cited note lacks source metadata, treat the answer as partial until the source is fixed.
+- If Obsidian links fail, run `tools/validate_vault.py` and fix links before trusting review output.
+- If golden questions fail, route the failure to source intake, extraction, metadata, chunking, ranking, pack scope, or gap labeling.
+- If a tool would write, fetch, or delete data, require a separate tool spec and audit trail before production use.
+
 ## Failure Modes
 
 - Giving the expert whole-vault access without pack boundaries.
@@ -104,6 +142,7 @@ The expert may call read-only vault tools without interrupting the user. Write t
 ## Related
 
 - [[Tool Spec - Vault Retrieval]]
+- [[../09_Module-System/Domain Retrieval Modules/System Architecture - 12 Module Pipeline|System Architecture - 12 Module Pipeline]]
 - [[../09_Module-System/Domain Knowledge Retrieval v1 Pipeline|Domain Knowledge Retrieval v1 Pipeline]]
 - [[../09_Module-System/Source Trust and Certainty Standard|Source Trust and Certainty Standard]]
 - [[../02_Domain-Knowledge/Packs/README|Knowledge Packs]]

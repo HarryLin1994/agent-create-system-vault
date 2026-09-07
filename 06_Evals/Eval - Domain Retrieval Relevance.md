@@ -28,6 +28,12 @@ Each test case should include:
 - Minimum reliability level.
 - Expected answerability: supported, partial, or gap.
 
+Run all available pack cases:
+
+```bash
+python3 tools/eval_retrieval.py --all
+```
+
 ## Passing Behavior
 
 - Top results include the expected notes for supported questions.
@@ -64,5 +70,6 @@ must_not:
 
 - [[../03_Capability-Modules/Capability - Domain Knowledge Retrieval|Domain Knowledge Retrieval]]
 - [[../03_Capability-Modules/Capability - Evidence Grounding|Evidence Grounding]]
+- [[../02_Domain-Knowledge/Packs/Pack - Agent Create System Retrieval|Pack - Agent Create System Retrieval]]
 - [[../04_Tool-Specs/Tool Spec - Vault Retrieval|Vault Retrieval]]
 - [[Eval - Refuse Unsupported Certainty]]

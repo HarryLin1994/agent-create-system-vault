@@ -26,6 +26,11 @@ This folder splits domain knowledge retrieval into internal modules that can be 
 12. [[11 - Obsidian Human Review Interface]]
 13. [[12 - Retrieval Eval Feedback Loop]]
 
+## Architecture
+
+- [[System Architecture - 12 Module Pipeline]]
+- [Compact architecture HTML](System Architecture - 12 Module Pipeline Compact.html)
+
 ## Boundary
 
 These are system-internal retrieval modules. Runtime agents should normally use the public capability and tool specs:

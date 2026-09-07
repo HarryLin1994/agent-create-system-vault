@@ -64,5 +64,5 @@ Use after [[03 - Knowledge Unit Extraction Gate]] accepts a unit.
 
 ## Eval Coverage
 
-- Metadata health checks in V1.1.
+- `tools/validate_vault.py` metadata and Obsidian-link checks.
 - Human review checklist in [[11 - Obsidian Human Review Interface]].

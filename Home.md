@@ -41,6 +41,7 @@ python3 agent-create-system-vault/tools/agent_retrieve.py \
 - [[09_Module-System/README|Module System]]
 - [[09_Module-System/Domain Knowledge Retrieval Design Spec|Domain Knowledge Retrieval Design Spec]]
 - [[09_Module-System/Domain Retrieval Modules/README|Domain Retrieval Modules]]
+- [[09_Module-System/Domain Retrieval Modules/System Architecture - 12 Module Pipeline|System Architecture - 12 Module Pipeline]]
 - [[09_Module-System/Source Trust and Certainty Standard|Source Trust and Certainty Standard]]
 
 ## Operating Rules

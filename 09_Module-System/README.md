@@ -20,6 +20,7 @@ A module is a reusable unit that can be attached to an agent blueprint. It must 
 - [[Module Registry]]
 - [[Domain Knowledge Retrieval Design Spec]]
 - [[Domain Retrieval Modules/README]]
+- [[Domain Retrieval Modules/System Architecture - 12 Module Pipeline]]
 - [[Expert Skill Factory v1 Pipeline]]
 - [[Domain Knowledge Retrieval v1 Pipeline]]
 - [[Source Trust and Certainty Standard]]
