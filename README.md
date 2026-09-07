@@ -20,6 +20,7 @@ The current development focus is the module system and domain knowledge retrieva
 
 - `09_Module-System` defines module contracts, assembly rules, source trust standards, and retrieval pipelines.
 - `09_Module-System/Domain Knowledge Retrieval Design Spec.md` is the main architecture spec for domain knowledge retrieval.
+- `09_Module-System/Domain Retrieval Modules/` breaks retrieval into source intake, extraction, knowledge packs, indexing, ranking, evidence packs, Obsidian review, and eval feedback.
 - `02_Domain-Knowledge` stores sources, concepts, cases, and scoped knowledge packs.
 - `04_Tool-Specs/Tool Spec - Vault Retrieval.md` defines the local retrieval tool.
 - `tools/agent_retrieve.py` returns evidence packs with Obsidian links for human review.

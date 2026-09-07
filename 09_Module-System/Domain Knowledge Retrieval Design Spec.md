@@ -93,6 +93,27 @@ Raw Sources
 
 This follows the common RAG data-pipeline shape from trusted guidance: ingest documents or media, chunk into semantically meaningful parts, enrich chunks with metadata, index them, retrieve at runtime, and evaluate retrieval quality.
 
+## Module Breakdown
+
+The retrieval system is implemented as internal modules in [[Domain Retrieval Modules/README|Domain Retrieval Modules]].
+
+| Order | Module | Responsibility |
+| --- | --- | --- |
+| 1 | [[Domain Retrieval Modules/01 - Source Intake and Trust|Source Intake and Trust]] | Register provenance, permission, source type, freshness, and reliability. |
+| 2 | [[Domain Retrieval Modules/02 - Media Extraction Adapters|Media Extraction Adapters]] | Extract differently from books, reports, images, charts, transcripts, and data. |
+| 3 | [[Domain Retrieval Modules/03 - Knowledge Unit Extraction Gate|Knowledge Unit Extraction Gate]] | Keep only expert-usable knowledge units. |
+| 4 | [[Domain Retrieval Modules/04 - Knowledge Note Writer|Knowledge Note Writer]] | Convert kept units into Obsidian-readable notes. |
+| 5 | [[Domain Retrieval Modules/05 - Knowledge Pack Builder|Knowledge Pack Builder]] | Bundle notes into scoped expert memory. |
+| 6 | [[Domain Retrieval Modules/06 - Retrieval Index Builder|Retrieval Index Builder]] | Build searchable chunks and metadata views. |
+| 7 | [[Domain Retrieval Modules/07 - Query Scope Router|Query Scope Router]] | Route questions to pack, domain, note type, tags, and reliability filters. |
+| 8 | [[Domain Retrieval Modules/08 - Retrieval Ranker|Retrieval Ranker]] | Rank candidate chunks and avoid duplicate result flooding. |
+| 9 | [[Domain Retrieval Modules/09 - Evidence Pack Builder|Evidence Pack Builder]] | Return stable structured evidence for agents and humans. |
+| 10 | [[Domain Retrieval Modules/10 - Gap and Conflict Detector|Gap and Conflict Detector]] | Label support as `supported`, `partial`, `gap`, or `conflict`. |
+| 11 | [[Domain Retrieval Modules/11 - Obsidian Human Review Interface|Obsidian Human Review Interface]] | Keep every artifact reviewable in Obsidian. |
+| 12 | [[Domain Retrieval Modules/12 - Retrieval Eval Feedback Loop|Retrieval Eval Feedback Loop]] | Use golden questions to improve extraction, metadata, ranking, and packs. |
+
+Build order matters: complete modules 1 through 5 before optimizing modules 6 through 10.
+
 ## Required Note Metadata
 
 All notes that should participate in retrieval need simple frontmatter that Obsidian and scripts can both read.
@@ -424,6 +445,7 @@ Minimum acceptance for a knowledge pack:
 
 ## Related
 
+- [[Domain Retrieval Modules/README]]
 - [[Domain Knowledge Retrieval v1 Pipeline]]
 - [[Source Trust and Certainty Standard]]
 - [[../03_Capability-Modules/Capability - Domain Knowledge Retrieval|Domain Knowledge Retrieval]]
