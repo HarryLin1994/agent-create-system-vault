@@ -26,8 +26,38 @@ The current development focus is the module system and domain knowledge retrieva
 - `04_Tool-Specs/Tool Spec - Vault Retrieval.md` defines the local retrieval tool.
 - `tools/agent_retrieve.py` returns evidence packs with Obsidian links for human review.
 - `tools/ingest_sources.py` scans raw source files and creates source manifests with stable IDs and hashes.
+- `tools/source_intake_ui.py` runs a local Gradio intake UI for domain, expert scope, raw files, URLs, and golden questions.
+- `tools/source_download.py` downloads explicit web URLs or small same-host crawls into raw source intake with robots checks.
 - `tools/validate_vault.py` checks module contracts, retrieval metadata, and Obsidian links.
 - `tools/eval_retrieval.py` runs knowledge-pack golden retrieval questions.
+
+## Dependencies
+
+Core CLI dependencies:
+
+- Python 3.10 or newer.
+- Python standard library only for `agent_retrieve.py`, `ingest_sources.py`, `source_download.py`, `validate_vault.py`, and `eval_retrieval.py`.
+
+Local UI dependency:
+
+- Gradio, tested locally with `gradio 6.24.0`.
+
+Optional human/review dependencies:
+
+- Obsidian for reading the vault as linked Markdown.
+- Node.js plus the local `archify` skill only if architecture HTML needs to be regenerated.
+
+Not V1 dependencies yet:
+
+- OCR services such as Google Document AI, Azure Document Intelligence, or AWS Textract.
+- Vector databases or embedding stores such as OpenAI Vector Stores, Azure AI Search, Qdrant, Weaviate, Pinecone, pgvector, or FAISS.
+- Agent orchestration frameworks such as LangChain, LlamaIndex, or Semantic Kernel.
+
+Install local UI dependency when needed:
+
+```bash
+python3 -m pip install gradio
+```
 
 ## Retrieval
 
@@ -53,6 +83,18 @@ Validate the vault and run retrieval evals:
 python3 tools/ingest_sources.py scan
 python3 tools/validate_vault.py
 python3 tools/eval_retrieval.py --all
+```
+
+Run the local intake UI:
+
+```bash
+python3 tools/source_intake_ui.py --port 7862
+```
+
+Download explicit web sources:
+
+```bash
+python3 tools/source_download.py download "https://example.com/page" --domain your-domain
 ```
 
 ## Tool Policy

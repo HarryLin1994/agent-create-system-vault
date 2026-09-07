@@ -19,6 +19,8 @@ EXTENSION_TYPES = {
     ".csv": "data-export",
     ".doc": "document",
     ".docx": "document",
+    ".htm": "web-page",
+    ".html": "web-page",
     ".jpeg": "image",
     ".jpg": "image",
     ".json": "data-export",
@@ -27,7 +29,9 @@ EXTENSION_TYPES = {
     ".png": "image",
     ".ppt": "presentation",
     ".pptx": "presentation",
+    ".rtf": "document",
     ".txt": "text",
+    ".xml": "structured-data",
     ".xlsx": "spreadsheet",
 }
 
@@ -42,6 +46,7 @@ class RawSource:
     sha256: str
     size_bytes: int
     modified_at: str
+    source_url: str = ""
 
 
 def parse_args() -> argparse.Namespace:
@@ -185,6 +190,7 @@ extension: {quote_yaml(source.extension)}
 title: {quote_yaml(title)}
 author: ""
 source_date: ""
+source_url: {quote_yaml(source.source_url)}
 version: ""
 permission: {quote_yaml(permission)}
 sensitivity: {quote_yaml(sensitivity)}
@@ -213,6 +219,7 @@ Review this raw source before extraction.
 | Title | {title} |
 | Author |  |
 | Source date |  |
+| Source URL | {source.source_url or ""} |
 | Version |  |
 | Permission | {permission} |
 | Sensitivity | {sensitivity} |

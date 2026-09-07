@@ -14,6 +14,7 @@ extension: ""
 title: ""
 author: ""
 source_date: ""
+source_url: ""
 version: ""
 permission: needs-review
 sensitivity: unknown
@@ -38,6 +39,7 @@ updated: ""
 | Title |  |
 | Author |  |
 | Source date |  |
+| Source URL |  |
 | Version |  |
 | Permission | needs-review |
 | Sensitivity | unknown |
