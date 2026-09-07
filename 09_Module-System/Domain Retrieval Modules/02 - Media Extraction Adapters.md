@@ -25,6 +25,7 @@ Use after source intake and before deciding which extracted material should beco
 - Source note from [[01 - Source Intake and Trust]].
 - Raw source type.
 - File path, URL, or source reference.
+- Source manifest with `source_id`, hash, extension, and source type when available.
 - Human notes about what matters.
 
 ## Outputs

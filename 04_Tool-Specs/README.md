@@ -19,6 +19,7 @@ Use [[../_templates/Tool Spec Template|Tool Spec Template]].
 
 ## Current Tools
 
+- [[Tool Spec - Source Ingestion|Source Ingestion]]
 - [[Tool Spec - Vault Retrieval|Vault Retrieval]]
 - [[Tool Spec - Expert Vault Interface|Expert Vault Interface]]
 

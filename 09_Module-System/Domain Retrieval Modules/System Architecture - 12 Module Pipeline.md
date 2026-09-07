@@ -90,6 +90,7 @@ flowchart LR
 ## Tools
 
 ```bash
+python3 tools/ingest_sources.py scan --domain your-domain
 python3 tools/agent_retrieve.py "your expert question" --reliability-floor medium
 python3 tools/validate_vault.py
 python3 tools/eval_retrieval.py --all

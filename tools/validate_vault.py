@@ -50,6 +50,8 @@ RETRIEVAL_CRITICAL_TYPES = {
     "module-taxonomy",
     "prompt",
     "runbook",
+    "source-intake-queue",
+    "source-manifest",
     "tool-spec",
 }
 
@@ -85,6 +87,20 @@ REQUIRED_SECTIONS = {
         "Planning",
         "V1 Completion Target",
     },
+    "source-intake-queue": {
+        "One-line Summary",
+        "Current Batch",
+        "Golden Questions Draft",
+        "Source Notes",
+    },
+    "source-manifest": {
+        "One-line Summary",
+        "Source Identity",
+        "Extraction Plan",
+        "Human Inputs Needed",
+        "Processing Notes",
+        "Related Source Note",
+    },
     "tool-spec": {
         "One-line Summary",
         "Inputs",
@@ -98,6 +114,23 @@ REQUIRED_FIELDS = {
     "knowledge-source": {"source_type", "title", "status", "tags", "reliability"},
     "knowledge-pack": {"pack_name", "domain", "status", "tags", "reliability"},
     "internal-module": {"type", "status", "tags", "reliability", "updated"},
+    "source-intake-queue": {"type", "status", "tags", "reliability", "updated"},
+    "source-manifest": {
+        "type",
+        "source_id",
+        "source_type",
+        "status",
+        "tags",
+        "reliability",
+        "raw_path",
+        "sha256",
+        "size_bytes",
+        "modified_at",
+        "extension",
+        "permission",
+        "sensitivity",
+        "updated",
+    },
     "tool-spec": {"type", "tool_name", "status", "tags", "reliability"},
 }
 

@@ -7,3 +7,8 @@ __pycache__/
 .venv/
 venv/
 env/
+
+# Raw source files can be large, private, or copyrighted.
+00_Inbox/Raw Sources/*
+!00_Inbox/Raw Sources/README.md
+!00_Inbox/Raw Sources/.gitkeep

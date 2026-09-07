@@ -26,6 +26,7 @@ Use when new raw material enters the vault: book, PDF, report, article, screensh
 - Source type.
 - Author or owner.
 - Publication or update date.
+- File hash when the source is a local file.
 - Access/permission status.
 - Intended expert domain.
 - Human reviewer when available.
@@ -33,6 +34,7 @@ Use when new raw material enters the vault: book, PDF, report, article, screensh
 ## Outputs
 
 - Source note in `02_Domain-Knowledge/Sources`.
+- Source manifest in `00_Inbox/Source Manifests` for local files.
 - Reliability label: `draft`, `low`, `medium`, or `high`.
 - Source trust tier.
 - `needs-source`, `needs-human-review`, or `active` status.
@@ -51,6 +53,7 @@ Use when new raw material enters the vault: book, PDF, report, article, screensh
 - Mark unclear source authority as `draft` or `low`.
 - Record source date and freshness caveat when the domain changes over time.
 - Record permission and privacy constraints for internal or database sources.
+- Use `tools/ingest_sources.py scan` to assign stable `source_id` and `sha256` before extraction.
 
 ## Failure Modes
 

@@ -55,18 +55,21 @@ Drop or defer anything that is duplicate, motivational, vague, unsupported, too 
 
 ## Process
 
-1. Put rough material in `00_Inbox`.
-2. Create a source note in `02_Domain-Knowledge/Sources`.
-3. Fill metadata: `type`, `source_type`, `domain`, `status`, `reliability`, `updated`, source title, author, URL/path, and source date.
-4. Summarize the source in one line.
-5. Extract candidate units.
-6. Apply the extraction gate.
-7. Create extracted notes in the correct folder.
-8. Link every extracted note to the source note.
-9. Add useful notes to a knowledge pack.
-10. Add golden retrieval questions.
-11. Run retrieval smoke tests.
-12. Mark unresolved issues as `needs-source`, `needs-human-review`, or `needs-vision`.
+1. Put original files in `00_Inbox/Raw Sources/`.
+2. Describe the batch in [[../00_Inbox/Source Intake Queue|Source Intake Queue]].
+3. Run `python3 tools/ingest_sources.py scan` to generate source manifests.
+4. Review generated manifests in `00_Inbox/Source Manifests/`.
+5. Create a source note in `02_Domain-Knowledge/Sources`.
+6. Fill metadata: `type`, `source_type`, `domain`, `status`, `reliability`, `updated`, source title, author, URL/path, hash, permission, and source date.
+7. Summarize the source in one line.
+8. Extract candidate units.
+9. Apply the extraction gate.
+10. Create extracted notes in the correct folder.
+11. Link every extracted note to the source note.
+12. Add useful notes to a knowledge pack.
+13. Add golden retrieval questions.
+14. Run retrieval smoke tests and retrieval evals.
+15. Mark unresolved issues as `needs-source`, `needs-human-review`, or `needs-vision`.
 
 ## Retrieval Smoke Test
 
@@ -79,6 +82,17 @@ python3 tools/agent_retrieve.py \
 ```
 
 Pass when the expected extracted notes appear, the evidence pack includes Obsidian links, and unsupported questions return `partial` or `gap`.
+
+## Source Manifest Scan
+
+```bash
+python3 tools/ingest_sources.py scan \
+  --domain your-domain \
+  --permission needs-review \
+  --sensitivity unknown
+```
+
+The scan computes `source_id`, `sha256`, file size, modified time, source type, and raw path before extraction.
 
 ## Related
 

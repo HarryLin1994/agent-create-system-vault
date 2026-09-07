@@ -25,6 +25,7 @@ The current development focus is the module system and domain knowledge retrieva
 - `02_Domain-Knowledge` stores sources, concepts, cases, and scoped knowledge packs.
 - `04_Tool-Specs/Tool Spec - Vault Retrieval.md` defines the local retrieval tool.
 - `tools/agent_retrieve.py` returns evidence packs with Obsidian links for human review.
+- `tools/ingest_sources.py` scans raw source files and creates source manifests with stable IDs and hashes.
 - `tools/validate_vault.py` checks module contracts, retrieval metadata, and Obsidian links.
 - `tools/eval_retrieval.py` runs knowledge-pack golden retrieval questions.
 
@@ -49,6 +50,7 @@ python3 tools/agent_retrieve.py \
 Validate the vault and run retrieval evals:
 
 ```bash
+python3 tools/ingest_sources.py scan
 python3 tools/validate_vault.py
 python3 tools/eval_retrieval.py --all
 ```

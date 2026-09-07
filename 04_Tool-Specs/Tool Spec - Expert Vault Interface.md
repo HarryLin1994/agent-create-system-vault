@@ -42,13 +42,23 @@ Give each expert the minimum tool and knowledge surface it needs:
 
 | Surface | Owner | Examples | Agent Control |
 | --- | --- | --- | --- |
-| Tools | `04_Tool-Specs` and `tools/` | `vault_retrieve`, `vault_validate`, `retrieval_gap_report`, `eval_retrieval` | Model-invoked |
+| Tools | `04_Tool-Specs` and `tools/` | `source_ingestion_scan`, `vault_retrieve`, `vault_validate`, `retrieval_gap_report`, `eval_retrieval` | Builder-invoked or model-invoked |
 | Resources | Obsidian Markdown notes | sources, concepts, cases, knowledge packs, diagrams | Application-provided |
 | Prompts | `05_Prompts`, `07_Runbooks`, `_templates` | system prompt templates, build runbooks | User-selected or builder-selected |
 
 This mirrors the MCP split between tools, resources, and prompts while keeping V1 local and dependency-free.
 
 ## V1 Tools
+
+### `source_ingestion_scan`
+
+Implemented by:
+
+```bash
+python3 tools/ingest_sources.py scan
+```
+
+Use before extraction when raw local files enter the vault. It creates source manifests with `source_id`, hash, source type, permission, and review fields.
 
 ### `vault_retrieve`
 
@@ -142,6 +152,7 @@ The expert may call read-only vault tools without interrupting the user. Write t
 ## Related
 
 - [[Tool Spec - Vault Retrieval]]
+- [[Tool Spec - Source Ingestion]]
 - [[../09_Module-System/Domain Retrieval Modules/System Architecture - 12 Module Pipeline|System Architecture - 12 Module Pipeline]]
 - [[../09_Module-System/Domain Knowledge Retrieval v1 Pipeline|Domain Knowledge Retrieval v1 Pipeline]]
 - [[../09_Module-System/Source Trust and Certainty Standard|Source Trust and Certainty Standard]]
