@@ -11,9 +11,5 @@ Runbooks describe repeatable workflows for building and maintaining agents.
 
 - [[Basic Agent Creation Flow]]
 - [[Create Agent From Request]]
+- [[Extract Expert Knowledge From Sources]]
 - [[Build Knowledge Pack For Expert]]
-
-## Current Runbooks
-
-- [[Basic Agent Creation Flow]]
-- [[Create Agent From Request]]

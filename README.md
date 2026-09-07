@@ -19,6 +19,7 @@ Start in [[Home.md]] when using this as an Obsidian vault.
 The current development focus is the module system and domain knowledge retrieval:
 
 - `09_Module-System` defines module contracts, assembly rules, source trust standards, and retrieval pipelines.
+- `09_Module-System/Domain Knowledge Retrieval Design Spec.md` is the main architecture spec for domain knowledge retrieval.
 - `02_Domain-Knowledge` stores sources, concepts, cases, and scoped knowledge packs.
 - `04_Tool-Specs/Tool Spec - Vault Retrieval.md` defines the local retrieval tool.
 - `tools/agent_retrieve.py` returns evidence packs with Obsidian links for human review.

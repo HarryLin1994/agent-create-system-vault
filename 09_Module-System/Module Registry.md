@@ -13,6 +13,7 @@ Track reusable modules here.
 | --- | --- | --- | --- | --- |
 | [[../03_Capability-Modules/Capability - Diagnostic Interview|Diagnostic Interview]] | capability | active | User request is underspecified | [[../06_Evals/Eval - Refuse Unsupported Certainty|Refuse Unsupported Certainty]] |
 | [[../03_Capability-Modules/Capability - Evidence Grounding|Evidence Grounding]] | capability | active | Answer depends on retrieved knowledge or source material | [[../06_Evals/Eval - Refuse Unsupported Certainty|Refuse Unsupported Certainty]] |
+| [[Domain Knowledge Retrieval Design Spec]] | design-spec | active | Need to design or change retrieval architecture | [[../06_Evals/Eval - Domain Retrieval Relevance|Domain Retrieval Relevance]] |
 | [[../03_Capability-Modules/Capability - Domain Knowledge Retrieval|Domain Knowledge Retrieval]] | capability | active | Skill needs domain expertise from local sources | [[../06_Evals/Eval - Domain Retrieval Relevance|Domain Retrieval Relevance]] |
 | [[../02_Domain-Knowledge/Packs/README|Knowledge Packs]] | knowledge | active | Expert needs scoped domain memory | [[../06_Evals/Eval - Domain Retrieval Relevance|Domain Retrieval Relevance]] |
 | [[../04_Tool-Specs/Tool Spec - Vault Retrieval|Vault Retrieval]] | tool | active | Need to search vault notes | [[../06_Evals/Eval - Domain Retrieval Relevance|Domain Retrieval Relevance]] |

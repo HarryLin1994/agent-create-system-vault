@@ -11,6 +11,8 @@ reliability: medium
 
 This dataflow shows how books, web material, database exports, and notes become retrievable evidence packs for expert skills.
 
+For the full retrieval architecture, see [[Domain Knowledge Retrieval Design Spec]].
+
 ## Diagram Files
 
 - HTML: [Domain Knowledge Retrieval v1 Pipeline.html](Domain%20Knowledge%20Retrieval%20v1%20Pipeline.html)
@@ -89,3 +91,4 @@ Use [[Source Trust and Certainty Standard]] to decide whether retrieval is `supp
 - [[../02_Domain-Knowledge/Packs/README|Knowledge Packs]]
 - [[../04_Tool-Specs/Tool Spec - Vault Retrieval|Vault Retrieval]]
 - [[../06_Evals/Eval - Domain Retrieval Relevance|Domain Retrieval Relevance]]
+- [[Domain Knowledge Retrieval Design Spec]]

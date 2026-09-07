@@ -35,9 +35,11 @@ python3 agent-create-system-vault/tools/agent_retrieve.py \
 - [[06_Evals/README|Evals]]
 - [[07_Runbooks/Basic Agent Creation Flow|Basic Agent Creation Flow]]
 - [[07_Runbooks/Create Agent From Request|Create Agent From Request]]
+- [[07_Runbooks/Extract Expert Knowledge From Sources|Extract Expert Knowledge From Sources]]
 - [[07_Runbooks/Build Knowledge Pack For Expert|Build Knowledge Pack For Expert]]
 - [[08_Registry/Agent Registry|Agent Registry]]
 - [[09_Module-System/README|Module System]]
+- [[09_Module-System/Domain Knowledge Retrieval Design Spec|Domain Knowledge Retrieval Design Spec]]
 - [[09_Module-System/Source Trust and Certainty Standard|Source Trust and Certainty Standard]]
 
 ## Operating Rules
