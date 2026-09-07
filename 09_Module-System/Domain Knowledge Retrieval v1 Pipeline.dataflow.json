@@ -1,0 +1,201 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "Domain Knowledge Retrieval v1 Pipeline",
+    "quality_profile": "showcase",
+    "output": "09_Module-System/Domain Knowledge Retrieval v1 Pipeline.html",
+    "viewBox": [1080, 600]
+  },
+  "stages": [
+    { "label": "Inputs" },
+    { "label": "Intake" },
+    { "label": "Processing" },
+    { "label": "Retrieval" },
+    { "label": "Use" }
+  ],
+  "nodes": [
+    {
+      "id": "sources",
+      "type": "external",
+      "label": "Source Library",
+      "sublabel": "books / web / img",
+      "stage": 0,
+      "row": 1,
+      "tag": "personal corpus"
+    },
+    {
+      "id": "accept_gate",
+      "type": "security",
+      "label": "Accept Gate",
+      "sublabel": "type + source",
+      "stage": 1,
+      "row": 1,
+      "tag": "policy"
+    },
+    {
+      "id": "parser",
+      "type": "backend",
+      "label": "Parser",
+      "sublabel": "text + OCR",
+      "stage": 1,
+      "row": 0,
+      "tag": "text"
+    },
+    {
+      "id": "raw_store",
+      "type": "database",
+      "label": "Raw Store",
+      "sublabel": "original files",
+      "stage": 1,
+      "row": 2,
+      "tag": "archive"
+    },
+    {
+      "id": "extract",
+      "type": "backend",
+      "label": "Extract",
+      "sublabel": "text + visuals",
+      "stage": 2,
+      "row": 0,
+      "tag": "structure"
+    },
+    {
+      "id": "keep_gate",
+      "type": "security",
+      "label": "Keep Gate",
+      "sublabel": "useful + reliable",
+      "stage": 2,
+      "row": 1,
+      "tag": "filter"
+    },
+    {
+      "id": "knowledge_notes",
+      "type": "database",
+      "label": "K Notes",
+      "sublabel": "source/case/visual",
+      "stage": 2,
+      "row": 2,
+      "tag": "Markdown"
+    },
+    {
+      "id": "index",
+      "type": "messagebus",
+      "label": "Index",
+      "sublabel": "metadata + chunks",
+      "stage": 3,
+      "row": 1,
+      "tag": "hybrid"
+    },
+    {
+      "id": "retriever",
+      "type": "messagebus",
+      "label": "Retriever",
+      "sublabel": "query + rank",
+      "stage": 3,
+      "row": 2,
+      "tag": "top-k"
+    },
+    {
+      "id": "evidence_pack",
+      "type": "cloud",
+      "label": "Evidence Pack",
+      "sublabel": "facts + visuals",
+      "stage": 4,
+      "row": 1,
+      "tag": "to skill"
+    },
+    {
+      "id": "feedback",
+      "type": "messagebus",
+      "label": "Feedback",
+      "sublabel": "misses + errors",
+      "stage": 4,
+      "row": 2,
+      "tag": "improve"
+    }
+  ],
+  "flows": [
+    {
+      "id": "sources-accept",
+      "from": "sources",
+      "to": "accept_gate",
+      "label": "raw",
+      "classification": "books, web, DB, images",
+      "variant": "default",
+      "route": "straight"
+    },
+    {
+      "id": "accept-parser",
+      "from": "accept_gate",
+      "to": "parser",
+      "label": "ok",
+      "variant": "emphasis",
+      "route": "vertical-channel"
+    },
+    {
+      "id": "accept-raw",
+      "from": "accept_gate",
+      "to": "raw_store",
+      "label": "copy",
+      "variant": "dashed",
+      "route": "vertical-channel"
+    },
+    {
+      "id": "parser-extract",
+      "from": "parser",
+      "to": "extract",
+      "label": "text",
+      "variant": "emphasis",
+      "route": "straight"
+    },
+    {
+      "id": "extract-keep",
+      "from": "extract",
+      "to": "keep_gate",
+      "label": "units",
+      "variant": "default",
+      "route": "vertical-channel"
+    },
+    {
+      "id": "keep-notes",
+      "from": "keep_gate",
+      "to": "knowledge_notes",
+      "label": "keep",
+      "variant": "emphasis",
+      "route": "vertical-channel"
+    },
+    {
+      "id": "notes-index",
+      "from": "knowledge_notes",
+      "to": "index",
+      "label": "chunks",
+      "variant": "emphasis",
+      "route": "vertical-channel"
+    },
+    {
+      "id": "index-retriever",
+      "from": "index",
+      "to": "retriever",
+      "label": "lookup",
+      "variant": "emphasis",
+      "route": "vertical-channel"
+    },
+    {
+      "id": "retriever-pack",
+      "from": "retriever",
+      "to": "evidence_pack",
+      "label": "ranked",
+      "variant": "emphasis",
+      "route": "vertical-channel"
+    },
+    {
+      "id": "pack-feedback",
+      "from": "evidence_pack",
+      "to": "feedback",
+      "label": "misses",
+      "variant": "security",
+      "route": "vertical-channel"
+    }
+  ]
+}
